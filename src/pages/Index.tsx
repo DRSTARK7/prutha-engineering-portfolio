@@ -1,5 +1,6 @@
 
 import { useEffect } from 'react';
+import Box from '@mui/material/Box';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import About from '@/components/About';
@@ -7,6 +8,20 @@ import Services from '@/components/Services';
 import Projects from '@/components/Projects';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
+
+// Define reveal classes in a style tag
+const revealStyles = `
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  
+  .reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
 
 const Index = () => {
   useEffect(() => {
@@ -33,15 +48,18 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="min-h-screen">
-      <Navbar />
-      <Hero />
-      <About />
-      <Services />
-      <Projects />
-      <Contact />
-      <Footer />
-    </div>
+    <>
+      <style>{revealStyles}</style>
+      <Box sx={{ minHeight: '100vh' }}>
+        <Navbar />
+        <Hero />
+        <About />
+        <Services />
+        <Projects />
+        <Contact />
+        <Footer />
+      </Box>
+    </>
   );
 };
 

@@ -1,7 +1,20 @@
 
 import { useEffect } from 'react';
-import { Settings, Wrench, Layers, Gauge } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+import Card from '@mui/material/Card';
+import Paper from '@mui/material/Paper';
+import Chip from '@mui/material/Chip';
+import Button from '@mui/material/Button';
+import { alpha } from '@mui/material/styles';
+import SettingsIcon from '@mui/icons-material/Settings';
+import BuildIcon from '@mui/icons-material/Build';
+import LayersIcon from '@mui/icons-material/Layers';
+import SpeedIcon from '@mui/icons-material/Speed';
+import CheckIcon from '@mui/icons-material/Check';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 const Services = () => {
   useEffect(() => {
@@ -26,7 +39,7 @@ const Services = () => {
 
   const serviceCategories = [
     {
-      icon: <Settings className="h-8 w-8" />,
+      icon: <SettingsIcon fontSize="large" />,
       title: 'VMC Machining',
       description: 'High-precision vertical machining center operations for complex components.',
       services: [
@@ -35,10 +48,10 @@ const Services = () => {
         'Precision Parts Manufacturing',
         'Prototype Development'
       ],
-      color: 'bg-blue-50 text-blue-700'
+      color: 'secondary'
     },
     {
-      icon: <Wrench className="h-8 w-8" />,
+      icon: <BuildIcon fontSize="large" />,
       title: 'Metal Fabrication',
       description: 'Comprehensive metal fabrication services from raw materials to finished products.',
       services: [
@@ -47,10 +60,10 @@ const Services = () => {
         'Laser and Plasma Cutting',
         'Metal Forming and Bending'
       ],
-      color: 'bg-steel-50 text-steel-700'
+      color: 'primary'
     },
     {
-      icon: <Layers className="h-8 w-8" />,
+      icon: <LayersIcon fontSize="large" />,
       title: 'Industrial Solutions',
       description: 'End-to-end industrial solutions tailored to specific industry requirements.',
       services: [
@@ -59,10 +72,10 @@ const Services = () => {
         'Custom Machinery Components',
         'Specialized Industrial Fixtures'
       ],
-      color: 'bg-blue-50 text-blue-700'
+      color: 'secondary'
     },
     {
-      icon: <Gauge className="h-8 w-8" />,
+      icon: <SpeedIcon fontSize="large" />,
       title: 'Engineering Services',
       description: 'Advanced engineering services to optimize designs for manufacturability.',
       services: [
@@ -71,103 +84,232 @@ const Services = () => {
         'Technical Consulting',
         '3D Modeling and CAD Services'
       ],
-      color: 'bg-steel-50 text-steel-700'
+      color: 'primary'
     }
   ];
 
   return (
-    <section id="services" className="section bg-steel-50/50">
-      <div className="container-custom">
-        <div className="max-w-3xl mx-auto text-center mb-16">
-          <span className="inline-block py-1 px-3 mb-4 text-xs font-semibold text-blue-700 bg-blue-50 rounded-full reveal">
-            Our Services
-          </span>
-          <h2 className="heading-lg mb-6 reveal">Comprehensive fabrication and machining solutions</h2>
-          <p className="text-lg text-muted-foreground reveal">
+    <Box id="services" sx={{ py: { xs: 8, md: 12 }, bgcolor: alpha('#f7f8f9', 0.5) }}>
+      <Container maxWidth="lg">
+        <Box sx={{ maxWidth: '48rem', mx: 'auto', textAlign: 'center', mb: 8 }}>
+          <Chip 
+            label="Our Services"
+            color="secondary"
+            size="small"
+            sx={{ 
+              mb: 2, 
+              fontWeight: 600,
+              bgcolor: alpha('#4f85dd', 0.1),
+              color: 'secondary.main',
+            }}
+            className="reveal"
+          />
+          <Typography 
+            variant="h2" 
+            className="reveal"
+            sx={{ 
+              mb: 3,
+              fontSize: { xs: '2rem', md: '2.5rem' },
+              fontWeight: 700,
+            }}
+          >
+            Comprehensive fabrication and machining solutions
+          </Typography>
+          <Typography 
+            variant="body1" 
+            className="reveal"
+            sx={{ fontSize: '1.125rem', color: 'text.secondary' }}
+          >
             We offer a wide range of precision manufacturing services utilizing state-of-the-art 
             vertical machining centers and advanced fabrication technologies.
-          </p>
-        </div>
+          </Typography>
+        </Box>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <Grid container spacing={4}>
           {serviceCategories.map((category, index) => (
-            <div 
-              key={index} 
-              className="bg-white rounded-lg shadow-sm border border-border overflow-hidden hover:shadow-md transition-all reveal"
-              style={{ animationDelay: `${index * 100}ms` }}
-            >
-              <div className={cn("p-4 flex items-center justify-center", category.color)}>
-                <div className="w-12 h-12 flex items-center justify-center">
-                  {category.icon}
-                </div>
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-semibold mb-3">{category.title}</h3>
-                <p className="text-muted-foreground mb-4">{category.description}</p>
-                <ul className="space-y-2">
-                  {category.services.map((service, i) => (
-                    <li key={i} className="flex items-start">
-                      <svg className="h-5 w-5 text-blue-600 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      <span>{service}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
+            <Grid item xs={12} sm={6} md={3} key={index}>
+              <Card 
+                className="reveal" 
+                sx={{ 
+                  height: '100%',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  transition: 'all 0.3s ease',
+                  '&:hover': {
+                    boxShadow: 3,
+                    transform: 'translateY(-5px)',
+                  },
+                  animationDelay: `${index * 100}ms`,
+                }}
+              >
+                <Box 
+                  sx={{ 
+                    p: 2, 
+                    display: 'flex', 
+                    justifyContent: 'center',
+                    bgcolor: category.color === 'secondary' 
+                      ? alpha('#4f85dd', 0.1) 
+                      : alpha('#566a85', 0.1),
+                    color: category.color === 'secondary' 
+                      ? 'secondary.main' 
+                      : 'primary.main',
+                  }}
+                >
+                  <Box sx={{ width: 48, height: 48, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    {category.icon}
+                  </Box>
+                </Box>
+                <Box sx={{ p: 3, flexGrow: 1 }}>
+                  <Typography variant="h5" component="h3" sx={{ mb: 1.5, fontWeight: 600 }}>
+                    {category.title}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+                    {category.description}
+                  </Typography>
+                  <Box component="ul" sx={{ pl: 0, m: 0, listStyle: 'none' }}>
+                    {category.services.map((service, i) => (
+                      <Box 
+                        component="li" 
+                        key={i} 
+                        sx={{ 
+                          display: 'flex', 
+                          alignItems: 'flex-start',
+                          mb: 1.5,
+                        }}
+                      >
+                        <CheckIcon 
+                          sx={{ 
+                            mr: 1, 
+                            mt: 0.25, 
+                            fontSize: '1.25rem',
+                            color: category.color === 'secondary' ? 'secondary.main' : 'primary.main' 
+                          }} 
+                        />
+                        <Typography variant="body2">{service}</Typography>
+                      </Box>
+                    ))}
+                  </Box>
+                </Box>
+              </Card>
+            </Grid>
           ))}
-        </div>
+        </Grid>
 
-        <div className="mt-20 bg-white p-8 rounded-lg shadow-sm border border-border reveal">
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="md:col-span-1">
-              <h3 className="heading-md mb-4">Custom solutions for your specific needs</h3>
-              <p className="text-muted-foreground mb-6">
+        <Paper 
+          elevation={1} 
+          className="reveal"
+          sx={{ 
+            mt: 10, 
+            p: 4, 
+            borderRadius: 2,
+          }}
+        >
+          <Grid container spacing={3}>
+            <Grid item xs={12} md={4}>
+              <Typography variant="h4" sx={{ mb: 2 }}>
+                Custom solutions for your specific needs
+              </Typography>
+              <Typography variant="body1" color="text.secondary" sx={{ mb: 3 }}>
                 Can't find exactly what you're looking for? Our team specializes in 
                 developing custom solutions tailored to your unique requirements.
-              </p>
-              <a 
-                href="#contact" 
-                className="inline-flex items-center px-5 py-2.5 bg-primary text-primary-foreground rounded-md shadow-sm hover:shadow transition-all hover:-translate-y-0.5 focus-ring"
+              </Typography>
+              <Button 
+                variant="contained" 
+                color="primary"
+                href="#contact"
+                sx={{ 
+                  px: 3,
+                  py: 1.25,
+                  '&:hover': {
+                    transform: 'translateY(-2px)',
+                    boxShadow: 3,
+                  },
+                  transition: 'all 0.3s ease',
+                }}
               >
                 Request Custom Service
-              </a>
-            </div>
-            <div className="md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="flex flex-col p-4 bg-blue-50 rounded-lg">
-                <div className="h-1 w-16 bg-blue-600 mb-4"></div>
-                <h4 className="font-semibold mb-2">Industry-Specific Solutions</h4>
-                <p className="text-sm text-muted-foreground">
-                  Specialized manufacturing solutions for aerospace, automotive, medical, and industrial sectors.
-                </p>
-              </div>
-              <div className="flex flex-col p-4 bg-steel-50 rounded-lg">
-                <div className="h-1 w-16 bg-steel-600 mb-4"></div>
-                <h4 className="font-semibold mb-2">Material Expertise</h4>
-                <p className="text-sm text-muted-foreground">
-                  Extensive experience working with steel, aluminum, titanium, stainless steel, and specialty alloys.
-                </p>
-              </div>
-              <div className="flex flex-col p-4 bg-steel-50 rounded-lg">
-                <div className="h-1 w-16 bg-steel-600 mb-4"></div>
-                <h4 className="font-semibold mb-2">Tolerance Capabilities</h4>
-                <p className="text-sm text-muted-foreground">
-                  Precision machining with tolerances as tight as ±0.0005" for critical applications.
-                </p>
-              </div>
-              <div className="flex flex-col p-4 bg-blue-50 rounded-lg">
-                <div className="h-1 w-16 bg-blue-600 mb-4"></div>
-                <h4 className="font-semibold mb-2">Volume Flexibility</h4>
-                <p className="text-sm text-muted-foreground">
-                  Scalable manufacturing capabilities for both small prototype runs and high-volume production.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+              </Button>
+            </Grid>
+            <Grid item xs={12} md={8}>
+              <Grid container spacing={2}>
+                <Grid item xs={12} sm={6}>
+                  <Box 
+                    sx={{ 
+                      p: 2, 
+                      bgcolor: alpha('#4f85dd', 0.1),
+                      borderRadius: 2,
+                      height: '100%',
+                    }}
+                  >
+                    <Box sx={{ height: 4, width: 40, bgcolor: 'secondary.main', mb: 2 }} />
+                    <Typography variant="subtitle1" sx={{ fontWeight: 600, mb: 1 }}>
+                      Industry-Specific Solutions
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      Specialized manufacturing solutions for aerospace, automotive, medical, and industrial sectors.
+                    </Typography>
+                  </Box>
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <Box 
+                    sx={{ 
+                      p: 2, 
+                      bgcolor: alpha('#566a85', 0.1),
+                      borderRadius: 2,
+                      height: '100%',
+                    }}
+                  >
+                    <Box sx={{ height: 4, width: 40, bgcolor: 'primary.main', mb: 2 }} />
+                    <Typography variant="subtitle1" sx={{ fontWeight: 600, mb: 1 }}>
+                      Material Expertise
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      Extensive experience working with steel, aluminum, titanium, stainless steel, and specialty alloys.
+                    </Typography>
+                  </Box>
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <Box 
+                    sx={{ 
+                      p: 2, 
+                      bgcolor: alpha('#566a85', 0.1),
+                      borderRadius: 2,
+                      height: '100%',
+                    }}
+                  >
+                    <Box sx={{ height: 4, width: 40, bgcolor: 'primary.main', mb: 2 }} />
+                    <Typography variant="subtitle1" sx={{ fontWeight: 600, mb: 1 }}>
+                      Tolerance Capabilities
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      Precision machining with tolerances as tight as ±0.0005" for critical applications.
+                    </Typography>
+                  </Box>
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <Box 
+                    sx={{ 
+                      p: 2, 
+                      bgcolor: alpha('#4f85dd', 0.1),
+                      borderRadius: 2,
+                      height: '100%',
+                    }}
+                  >
+                    <Box sx={{ height: 4, width: 40, bgcolor: 'secondary.main', mb: 2 }} />
+                    <Typography variant="subtitle1" sx={{ fontWeight: 600, mb: 1 }}>
+                      Volume Flexibility
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      Scalable manufacturing capabilities for both small prototype runs and high-volume production.
+                    </Typography>
+                  </Box>
+                </Grid>
+              </Grid>
+            </Grid>
+          </Grid>
+        </Paper>
+      </Container>
+    </Box>
   );
 };
 

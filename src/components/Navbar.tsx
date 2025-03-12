@@ -1,21 +1,24 @@
 
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import { Link as RouterLink } from 'react-router-dom';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import MenuIcon from '@mui/icons-material/Menu';
+import Container from '@mui/material/Container';
+import useScrollTrigger from '@mui/material/useScrollTrigger';
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 10);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
+  const trigger = useScrollTrigger({
+    disableHysteresis: true,
+    threshold: 10,
+  });
 
   const navLinks = [
     { name: 'Home', path: '#hero' },
@@ -25,72 +28,117 @@ const Navbar = () => {
     { name: 'Contact', path: '#contact' },
   ];
 
+  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorElNav(event.currentTarget);
+  };
+
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
+  };
+
+  const scrollToSection = (path: string) => {
+    if (path === '#hero') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      const element = document.querySelector(path);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+    handleCloseNavMenu();
+  };
+
   return (
-    <nav 
-      className={cn(
-        'fixed top-0 w-full z-50 transition-all duration-300 ease-expo-out py-4 px-6',
-        scrolled ? 'bg-white/80 backdrop-blur-md shadow-sm' : 'bg-transparent'
-      )}
+    <AppBar 
+      position="fixed" 
+      elevation={trigger ? 1 : 0}
+      sx={{ 
+        bgcolor: trigger ? 'rgba(255, 255, 255, 0.8)' : 'transparent',
+        backdropFilter: trigger ? 'blur(10px)' : 'none',
+        color: trigger ? 'text.primary' : 'inherit',
+        transition: 'all 0.3s ease-in-out',
+      }}
     >
-      <div className="container-custom flex items-center justify-between">
-        <Link 
-          to="/" 
-          className="flex items-center space-x-2"
-          onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})}
-        >
-          <span className="font-display font-bold text-2xl tracking-tight">
-            Precision<span className="text-blue-700">Fab</span>
-          </span>
-        </Link>
+      <Container maxWidth="lg">
+        <Toolbar disableGutters>
+          {/* Logo and brand name */}
+          <Typography
+            variant="h6"
+            component={RouterLink}
+            to="/"
+            onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})}
+            sx={{
+              fontFamily: '"Helvetica Neue", sans-serif',
+              fontWeight: 700,
+              color: 'inherit',
+              textDecoration: 'none',
+              display: 'flex',
+              flexGrow: { xs: 1, md: 0 },
+              mr: { md: 5 },
+            }}
+          >
+            Precision<Box component="span" sx={{ color: 'secondary.main' }}>Fab</Box>
+          </Typography>
 
-        {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center space-x-8">
-          {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.path}
-              className="text-sm font-medium transition-colors hover:text-primary focus-ring"
+          {/* Mobile menu */}
+          <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+            <IconButton
+              size="large"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={handleOpenNavMenu}
+              color="inherit"
             >
-              {link.name}
-            </a>
-          ))}
-        </div>
-
-        {/* Mobile menu button */}
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden focus-ring rounded-full p-2"
-          aria-label="Toggle menu"
-        >
-          {isOpen ? (
-            <X className="h-6 w-6" />
-          ) : (
-            <Menu className="h-6 w-6" />
-          )}
-        </button>
-      </div>
-
-      {/* Mobile Navigation */}
-      <div
-        className={cn(
-          'fixed inset-0 z-40 bg-white/80 backdrop-blur-md flex flex-col pt-24 px-6 transition-all duration-300 ease-expo-out md:hidden',
-          isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-full pointer-events-none'
-        )}
-      >
-        <div className="flex flex-col space-y-6">
-          {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.path}
-              className="text-lg font-medium transition-colors hover:text-primary"
-              onClick={() => setIsOpen(false)}
+              <MenuIcon />
+            </IconButton>
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorElNav}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'left',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'left',
+              }}
+              open={Boolean(anchorElNav)}
+              onClose={handleCloseNavMenu}
+              sx={{
+                display: { xs: 'block', md: 'none' },
+              }}
             >
-              {link.name}
-            </a>
-          ))}
-        </div>
-      </div>
-    </nav>
+              {navLinks.map((link) => (
+                <MenuItem key={link.name} onClick={() => scrollToSection(link.path)}>
+                  <Typography textAlign="center">{link.name}</Typography>
+                </MenuItem>
+              ))}
+            </Menu>
+          </Box>
+
+          {/* Desktop menu */}
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'flex-end' }}>
+            {navLinks.map((link) => (
+              <Button
+                key={link.name}
+                onClick={() => scrollToSection(link.path)}
+                sx={{ 
+                  my: 2, 
+                  mx: 1,
+                  color: 'inherit',
+                  '&:hover': {
+                    backgroundColor: 'rgba(0, 0, 0, 0.04)',
+                  }
+                }}
+              >
+                {link.name}
+              </Button>
+            ))}
+          </Box>
+        </Toolbar>
+      </Container>
+    </AppBar>
   );
 };
 

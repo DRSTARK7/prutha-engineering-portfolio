@@ -1,6 +1,13 @@
 
 import { useEffect, useRef } from 'react';
-import { ChevronDown } from 'lucide-react';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import Container from '@mui/material/Container';
+import Chip from '@mui/material/Chip';
+import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import { alpha } from '@mui/material/styles';
 
 const Hero = () => {
   const titleRef = useRef<HTMLHeadingElement>(null);
@@ -33,56 +40,178 @@ const Hero = () => {
   };
 
   return (
-    <section id="hero" className="relative h-screen w-full overflow-hidden flex items-center justify-center bg-grid">
-      <div className="absolute inset-0 bg-gradient-to-b from-blue-50/50 via-transparent to-background z-0"></div>
+    <Box 
+      id="hero" 
+      sx={{
+        position: 'relative',
+        height: '100vh',
+        width: '100%',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        overflow: 'hidden',
+        backgroundImage: 'linear-gradient(to right, rgba(100, 100, 100, 0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(100, 100, 100, 0.05) 1px, transparent 1px)',
+        backgroundSize: '40px 40px',
+      }}
+    >
+      <Box 
+        sx={{
+          position: 'absolute',
+          inset: 0,
+          background: 'linear-gradient(to bottom, rgba(240, 245, 252, 0.5), transparent, rgba(247, 248, 249, 1))', 
+          zIndex: 0
+        }}
+      />
       
       {/* Decorative elements */}
-      <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-blue-200/20 rounded-full filter blur-3xl animate-pulse-slow"></div>
-      <div className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-steel-200/30 rounded-full filter blur-3xl animate-pulse-slow"></div>
+      <Box
+        sx={{
+          position: 'absolute',
+          top: '25%',
+          left: '25%',
+          width: '16rem',
+          height: '16rem',
+          bgcolor: alpha('#a1c3ee', 0.2), // blue-300 with alpha
+          borderRadius: '50%',
+          filter: 'blur(40px)',
+          animation: 'pulse 4s ease-in-out infinite',
+          '@keyframes pulse': {
+            '0%, 100%': { opacity: 1 },
+            '50%': { opacity: 0.8 },
+          },
+        }}
+      />
+      <Box
+        sx={{
+          position: 'absolute',
+          bottom: '33%',
+          right: '25%',
+          width: '20rem',
+          height: '20rem',
+          bgcolor: alpha('#d0d7df', 0.3), // steel-200 with alpha
+          borderRadius: '50%',
+          filter: 'blur(40px)',
+          animation: 'pulse 4s ease-in-out infinite',
+          animationDelay: '2s',
+        }}
+      />
       
-      <div className="container-custom relative z-10 text-center">
-        <span className="inline-block py-1 px-3 mb-4 text-xs font-semibold text-blue-700 bg-blue-50 rounded-full reveal">
-          Precision Engineering & Fabrication
-        </span>
+      <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1, textAlign: 'center' }}>
+        <Chip 
+          label="Precision Engineering & Fabrication"
+          color="secondary"
+          size="small"
+          sx={{ 
+            mb: 2, 
+            fontWeight: 600,
+            bgcolor: alpha('#4f85dd', 0.1),
+            color: 'secondary.main',
+          }}
+          className="reveal"
+        />
         
-        <h1 
+        <Typography 
+          variant="h1" 
           ref={titleRef} 
-          className="heading-xl mb-6 reveal"
-          style={{ animationDelay: "200ms" }}
+          className="reveal"
+          sx={{
+            fontSize: { xs: '2.5rem', md: '3.5rem', lg: '4rem' },
+            fontWeight: 700,
+            mb: 3,
+            lineHeight: 1.2,
+            animationDelay: "200ms",
+          }}
         >
           Crafting the future with <br />
-          <span className="text-blue-700">precision</span> and <span className="text-steel-700">innovation</span>
-        </h1>
+          <Box component="span" sx={{ color: 'secondary.main' }}>precision</Box> and{' '}
+          <Box component="span" sx={{ color: 'primary.main' }}>innovation</Box>
+        </Typography>
         
-        <p className="max-w-2xl mx-auto text-lg text-muted-foreground mb-8 reveal" style={{ animationDelay: "400ms" }}>
+        <Typography 
+          variant="h5" 
+          className="reveal"
+          sx={{ 
+            maxWidth: '36rem', 
+            mx: 'auto', 
+            color: 'text.secondary',
+            mb: 4,
+            animationDelay: "400ms",
+          }}
+        >
           Transforming raw materials into sophisticated solutions through state-of-the-art 
           vertical machining centers and expert fabrication techniques.
-        </p>
+        </Typography>
         
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 reveal" style={{ animationDelay: "600ms" }}>
-          <a 
-            href="#contact" 
-            className="px-6 py-3 bg-primary text-primary-foreground rounded-md shadow-md hover:shadow-lg transition-all hover:-translate-y-0.5 focus-ring"
+        <Box 
+          sx={{ 
+            display: 'flex', 
+            flexDirection: { xs: 'column', sm: 'row' }, 
+            alignItems: 'center', 
+            justifyContent: 'center', 
+            gap: 2,
+            animationDelay: "600ms",
+          }}
+          className="reveal"
+        >
+          <Button 
+            variant="contained"
+            color="primary"
+            size="large"
+            href="#contact"
+            sx={{ 
+              px: 4, 
+              py: 1.5,
+              boxShadow: 2,
+              '&:hover': {
+                boxShadow: 4,
+                transform: 'translateY(-2px)',
+              },
+              transition: 'all 0.3s ease',
+            }}
           >
             Get in Touch
-          </a>
-          <a 
-            href="#services" 
-            className="px-6 py-3 border border-primary/20 rounded-md hover:bg-primary/5 transition-all hover:-translate-y-0.5 focus-ring"
+          </Button>
+          <Button 
+            variant="outlined"
+            color="primary"
+            size="large"
+            href="#services"
+            sx={{ 
+              px: 4, 
+              py: 1.5,
+              '&:hover': {
+                bgcolor: alpha('#41526b', 0.05),
+                transform: 'translateY(-2px)',
+              },
+              transition: 'all 0.3s ease',
+            }}
           >
             Explore Our Services
-          </a>
-        </div>
-      </div>
+          </Button>
+        </Box>
+      </Container>
       
-      <button 
+      <Button 
         onClick={scrollToNextSection}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-float focus-ring"
         aria-label="Scroll down"
+        sx={{
+          position: 'absolute',
+          bottom: 32,
+          left: '50%',
+          transform: 'translateX(-50%)',
+          minWidth: 'auto',
+          p: 1,
+          color: 'text.secondary',
+          animation: 'float 6s ease-in-out infinite',
+          '@keyframes float': {
+            '0%, 100%': { transform: 'translateY(0)' },
+            '50%': { transform: 'translateY(-5px)' },
+          }
+        }}
       >
-        <ChevronDown size={24} className="text-muted-foreground" />
-      </button>
-    </section>
+        <KeyboardArrowDownIcon fontSize="large" />
+      </Button>
+    </Box>
   );
 };
 
