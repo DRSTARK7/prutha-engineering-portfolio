@@ -1,68 +1,76 @@
 
 import { useState } from "react";
-import { Menu, Button, Drawer, Space } from "antd";
-import { MenuOutlined } from "@ant-design/icons";
-import { useTitle } from "@refinedev/core";
 import { useNavigate } from "react-router-dom";
-import { Header } from "@refinedev/antd";
 
 export const NavHeader: React.FC = () => {
-  const [visible, setVisible] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
-  const title = useTitle();
 
   const menuItems = [
-    { key: "home", label: "Home", onClick: () => navigate("#hero") },
-    { key: "about", label: "About", onClick: () => navigate("#about") },
-    { key: "services", label: "Services", onClick: () => navigate("#services") },
-    { key: "projects", label: "Projects", onClick: () => navigate("#projects") },
-    { key: "contact", label: "Contact", onClick: () => navigate("#contact") },
+    { key: "home", label: "Home", href: "#hero" },
+    { key: "about", label: "About", href: "#about" },
+    { key: "services", label: "Services", href: "#services" },
+    { key: "projects", label: "Projects", href: "#projects" },
+    { key: "contact", label: "Contact", href: "#contact" },
   ];
 
-  const showDrawer = () => {
-    setVisible(true);
-  };
-
-  const onClose = () => {
-    setVisible(false);
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
   };
 
   return (
-    <Header
-      sticky
-      style={{
-        background: "#fff",
-        padding: "0 24px",
-        boxShadow: "0 2px 8px rgba(0, 0, 0, 0.15)",
-      }}
-    >
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-        <div style={{ fontSize: "1.5rem", fontWeight: "bold", color: "#354257" }}>
-          {title}
-        </div>
-        <div className="menu-desktop" style={{ display: { xs: "none", md: "block" } }}>
-          <Menu
-            mode="horizontal"
-            items={menuItems}
-            style={{ border: "none" }}
-          />
-        </div>
-        <div className="menu-mobile" style={{ display: { xs: "block", md: "none" } }}>
-          <Button type="text" onClick={showDrawer} icon={<MenuOutlined />} />
-          <Drawer
-            title="Menu"
-            placement="right"
-            onClose={onClose}
-            open={visible}
+    <header className="sticky top-0 z-50 bg-white shadow-md">
+      <div className="container mx-auto px-4 py-4">
+        <div className="flex justify-between items-center">
+          <div className="text-2xl font-bold text-steel-700">FabMachine</div>
+          
+          {/* Desktop Menu */}
+          <nav className="hidden md:block">
+            <ul className="flex space-x-8">
+              {menuItems.map((item) => (
+                <li key={item.key}>
+                  <a 
+                    href={item.href}
+                    className="text-steel-600 hover:text-blue-600 transition-colors"
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+          
+          {/* Mobile Menu Button */}
+          <button 
+            className="md:hidden text-steel-700"
+            onClick={toggleMenu}
+            aria-label="Toggle menu"
           >
-            <Menu
-              mode="vertical"
-              items={menuItems}
-              style={{ border: "none" }}
-            />
-          </Drawer>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={isMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} />
+            </svg>
+          </button>
         </div>
+        
+        {/* Mobile Menu */}
+        {isMenuOpen && (
+          <nav className="md:hidden mt-4 pb-4">
+            <ul className="flex flex-col space-y-4">
+              {menuItems.map((item) => (
+                <li key={item.key}>
+                  <a 
+                    href={item.href}
+                    className="block text-steel-600 hover:text-blue-600 transition-colors"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        )}
       </div>
-    </Header>
+    </header>
   );
 };
