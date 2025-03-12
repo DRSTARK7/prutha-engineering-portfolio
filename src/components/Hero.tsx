@@ -1,218 +1,90 @@
 
-import { useEffect, useRef } from 'react';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import Container from '@mui/material/Container';
-import Chip from '@mui/material/Chip';
-import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import { alpha } from '@mui/material/styles';
+import { Button, Typography, Row, Col, Space } from "antd";
+import { ArrowRightOutlined } from "@ant-design/icons";
 
-const Hero = () => {
-  const titleRef = useRef<HTMLHeadingElement>(null);
-  
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('active');
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
+const { Title, Paragraph } = Typography;
 
-    const elements = document.querySelectorAll('.reveal');
-    elements.forEach((el) => observer.observe(el));
-
-    return () => {
-      elements.forEach((el) => observer.unobserve(el));
-    };
-  }, []);
-
-  const scrollToNextSection = () => {
-    const aboutSection = document.getElementById('about');
-    if (aboutSection) {
-      aboutSection.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
+export const Hero = () => {
   return (
-    <Box 
-      id="hero" 
-      sx={{
-        position: 'relative',
-        height: '100vh',
-        width: '100%',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        overflow: 'hidden',
-        backgroundImage: 'linear-gradient(to right, rgba(100, 100, 100, 0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(100, 100, 100, 0.05) 1px, transparent 1px)',
-        backgroundSize: '40px 40px',
+    <div
+      style={{
+        minHeight: "90vh",
+        background: "linear-gradient(135deg, #f0f5fc 0%, #e0e9f8 100%)",
+        padding: "0 24px",
+        display: "flex",
+        alignItems: "center",
       }}
     >
-      <Box 
-        sx={{
-          position: 'absolute',
-          inset: 0,
-          background: 'linear-gradient(to bottom, rgba(240, 245, 252, 0.5), transparent, rgba(247, 248, 249, 1))', 
-          zIndex: 0
-        }}
-      />
-      
-      {/* Decorative elements */}
-      <Box
-        sx={{
-          position: 'absolute',
-          top: '25%',
-          left: '25%',
-          width: '16rem',
-          height: '16rem',
-          bgcolor: alpha('#a1c3ee', 0.2), // blue-300 with alpha
-          borderRadius: '50%',
-          filter: 'blur(40px)',
-          animation: 'pulse 4s ease-in-out infinite',
-          '@keyframes pulse': {
-            '0%, 100%': { opacity: 1 },
-            '50%': { opacity: 0.8 },
-          },
-        }}
-      />
-      <Box
-        sx={{
-          position: 'absolute',
-          bottom: '33%',
-          right: '25%',
-          width: '20rem',
-          height: '20rem',
-          bgcolor: alpha('#d0d7df', 0.3), // steel-200 with alpha
-          borderRadius: '50%',
-          filter: 'blur(40px)',
-          animation: 'pulse 4s ease-in-out infinite',
-          animationDelay: '2s',
-        }}
-      />
-      
-      <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1, textAlign: 'center' }}>
-        <Chip 
-          label="Precision Engineering & Fabrication"
-          color="secondary"
-          size="small"
-          sx={{ 
-            mb: 2, 
-            fontWeight: 600,
-            bgcolor: alpha('#4f85dd', 0.1),
-            color: 'secondary.main',
-          }}
-          className="reveal"
-        />
-        
-        <Typography 
-          variant="h1" 
-          ref={titleRef} 
-          className="reveal"
-          sx={{
-            fontSize: { xs: '2.5rem', md: '3.5rem', lg: '4rem' },
-            fontWeight: 700,
-            mb: 3,
-            lineHeight: 1.2,
-            animationDelay: "200ms",
-          }}
-        >
-          Crafting the future with <br />
-          <Box component="span" sx={{ color: 'secondary.main' }}>precision</Box> and{' '}
-          <Box component="span" sx={{ color: 'primary.main' }}>innovation</Box>
-        </Typography>
-        
-        <Typography 
-          variant="h5" 
-          className="reveal"
-          sx={{ 
-            maxWidth: '36rem', 
-            mx: 'auto', 
-            color: 'text.secondary',
-            mb: 4,
-            animationDelay: "400ms",
-          }}
-        >
-          Transforming raw materials into sophisticated solutions through state-of-the-art 
-          vertical machining centers and expert fabrication techniques.
-        </Typography>
-        
-        <Box 
-          sx={{ 
-            display: 'flex', 
-            flexDirection: { xs: 'column', sm: 'row' }, 
-            alignItems: 'center', 
-            justifyContent: 'center', 
-            gap: 2,
-            animationDelay: "600ms",
-          }}
-          className="reveal"
-        >
-          <Button 
-            variant="contained"
-            color="primary"
-            size="large"
-            href="#contact"
-            sx={{ 
-              px: 4, 
-              py: 1.5,
-              boxShadow: 2,
-              '&:hover': {
-                boxShadow: 4,
-                transform: 'translateY(-2px)',
-              },
-              transition: 'all 0.3s ease',
-            }}
-          >
-            Get in Touch
-          </Button>
-          <Button 
-            variant="outlined"
-            color="primary"
-            size="large"
-            href="#services"
-            sx={{ 
-              px: 4, 
-              py: 1.5,
-              '&:hover': {
-                bgcolor: alpha('#41526b', 0.05),
-                transform: 'translateY(-2px)',
-              },
-              transition: 'all 0.3s ease',
-            }}
-          >
-            Explore Our Services
-          </Button>
-        </Box>
-      </Container>
-      
-      <Button 
-        onClick={scrollToNextSection}
-        aria-label="Scroll down"
-        sx={{
-          position: 'absolute',
-          bottom: 32,
-          left: '50%',
-          transform: 'translateX(-50%)',
-          minWidth: 'auto',
-          p: 1,
-          color: 'text.secondary',
-          animation: 'float 6s ease-in-out infinite',
-          '@keyframes float': {
-            '0%, 100%': { transform: 'translateY(0)' },
-            '50%': { transform: 'translateY(-5px)' },
-          }
-        }}
+      <Row 
+        justify="center" 
+        align="middle" 
+        style={{ width: "100%", maxWidth: 1200, margin: "0 auto" }}
       >
-        <KeyboardArrowDownIcon fontSize="large" />
-      </Button>
-    </Box>
+        <Col xs={24} md={12} style={{ padding: "24px" }}>
+          <div style={{ maxWidth: 580 }}>
+            <Title 
+              level={1} 
+              style={{ 
+                fontSize: "3.5rem", 
+                fontWeight: 800,
+                marginBottom: 16,
+                color: "#1e2632"
+              }}
+            >
+              Precision Engineering Solutions
+            </Title>
+            <Paragraph 
+              style={{ 
+                fontSize: "1.25rem", 
+                color: "#566a85",
+                marginBottom: 32 
+              }}
+            >
+              Innovative design, expert fabrication, and cutting-edge manufacturing
+              technology for your most challenging engineering projects.
+            </Paragraph>
+            <Space size="large">
+              <Button 
+                type="primary" 
+                size="large"
+                style={{
+                  height: 48,
+                  fontSize: "1rem",
+                  borderRadius: 8,
+                  background: "#386ad0",
+                }}
+                onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
+              >
+                Contact Us
+              </Button>
+              <Button 
+                type="text" 
+                size="large"
+                style={{
+                  height: 48,
+                  fontSize: "1rem",
+                  color: "#386ad0",
+                }}
+                onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}
+                icon={<ArrowRightOutlined />}
+              >
+                View Our Work
+              </Button>
+            </Space>
+          </div>
+        </Col>
+        <Col xs={24} md={12} style={{ padding: "24px" }}>
+          <div
+            style={{
+              width: "100%",
+              height: 400,
+              background: "url('https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80') center/cover no-repeat",
+              borderRadius: 16,
+              boxShadow: "0 8px 30px rgba(0, 0, 0, 0.12)",
+            }}
+          />
+        </Col>
+      </Row>
+    </div>
   );
 };
-
-export default Hero;

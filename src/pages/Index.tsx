@@ -1,27 +1,14 @@
 
-import { useEffect } from 'react';
-import Box from '@mui/material/Box';
-import Navbar from '@/components/Navbar';
-import Hero from '@/components/Hero';
-import About from '@/components/About';
-import Services from '@/components/Services';
-import Projects from '@/components/Projects';
-import Contact from '@/components/Contact';
-import Footer from '@/components/Footer';
+import { useEffect } from "react";
+import { Typography, Layout, Anchor } from "antd";
+import { Hero } from "@/components/Hero";
+import { AboutSection } from "@/components/AboutSection";
+import { ServicesSection } from "@/components/ServicesSection";
+import { ProjectsSection } from "@/components/ProjectsSection";
+import { ContactSection } from "@/components/ContactSection";
 
-// Define reveal classes in a style tag
-const revealStyles = `
-  .reveal {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
-  }
-  
-  .reveal.active {
-    opacity: 1;
-    transform: translateY(0);
-  }
-`;
+const { Content } = Layout;
+const { Link } = Anchor;
 
 const Index = () => {
   useEffect(() => {
@@ -48,18 +35,68 @@ const Index = () => {
   }, []);
 
   return (
-    <>
-      <style>{revealStyles}</style>
-      <Box sx={{ minHeight: '100vh' }}>
-        <Navbar />
-        <Hero />
-        <About />
-        <Services />
-        <Projects />
-        <Contact />
-        <Footer />
-      </Box>
-    </>
+    <Layout>
+      <style>
+        {`
+          .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+          }
+          
+          .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+          }
+          
+          .section-padding {
+            padding: 64px 24px;
+          }
+          
+          .anchor-container {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1000;
+          }
+          
+          @media (max-width: 768px) {
+            .anchor-container {
+              display: none;
+            }
+          }
+        `}
+      </style>
+      
+      <div className="anchor-container">
+        <Anchor>
+          <Link href="#hero" title="Home" />
+          <Link href="#about" title="About" />
+          <Link href="#services" title="Services" />
+          <Link href="#projects" title="Projects" />
+          <Link href="#contact" title="Contact" />
+        </Anchor>
+      </div>
+      
+      <Content>
+        <div id="hero">
+          <Hero />
+        </div>
+        <div id="about" className="reveal section-padding">
+          <AboutSection />
+        </div>
+        <div id="services" className="reveal section-padding">
+          <ServicesSection />
+        </div>
+        <div id="projects" className="reveal section-padding">
+          <ProjectsSection />
+        </div>
+        <div id="contact" className="reveal section-padding">
+          <ContactSection />
+        </div>
+      </Content>
+    </Layout>
   );
 };
 
