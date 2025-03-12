@@ -1,6 +1,6 @@
 
 import { useEffect } from 'react';
-import { Settings, Tool, Layers, Gauge } from 'lucide-react';
+import { Settings, Wrench, Layers, Gauge } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const Services = () => {
@@ -38,7 +38,7 @@ const Services = () => {
       color: 'bg-blue-50 text-blue-700'
     },
     {
-      icon: <Tool className="h-8 w-8" />,
+      icon: <Wrench className="h-8 w-8" />,
       title: 'Metal Fabrication',
       description: 'Comprehensive metal fabrication services from raw materials to finished products.',
       services: [
