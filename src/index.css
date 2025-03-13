@@ -107,6 +107,17 @@
     background-image: linear-gradient(to right, rgba(100, 100, 100, 0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(100, 100, 100, 0.05) 1px, transparent 1px);
     background-size: 40px 40px;
   }
+  
+  /* New desktop-specific styles */
+  @media (min-width: 1024px) {
+    .bg-grid {
+      background-size: 60px 60px;
+    }
+    
+    .container-custom {
+      max-width: 1280px;
+    }
+  }
 }
 
 .reveal {
@@ -118,6 +129,14 @@
 .reveal.active {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* Enhanced animations for desktop */
+@media (min-width: 768px) {
+  .reveal {
+    transform: translateY(30px);
+    transition: opacity 1s ease, transform 1s ease;
+  }
 }
 
 .transitioning-page-enter {

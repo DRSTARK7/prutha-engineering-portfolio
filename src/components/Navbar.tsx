@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const Navbar = () => {
@@ -29,7 +29,7 @@ const Navbar = () => {
     <nav 
       className={cn(
         'fixed top-0 w-full z-50 transition-all duration-300 ease-expo-out py-4 px-6',
-        scrolled ? 'bg-white/80 backdrop-blur-md shadow-sm' : 'bg-transparent'
+        scrolled ? 'bg-white/90 backdrop-blur-md shadow-sm' : 'bg-transparent'
       )}
     >
       <div className="container-custom flex items-center justify-between">
@@ -54,6 +54,12 @@ const Navbar = () => {
               {link.name}
             </a>
           ))}
+          <a
+            href="#contact"
+            className="px-4 py-2 bg-primary text-primary-foreground rounded-md shadow-sm hover:shadow-md transition-all hover:-translate-y-0.5 focus-ring"
+          >
+            Get Started
+          </a>
         </div>
 
         {/* Mobile menu button */}
@@ -73,7 +79,7 @@ const Navbar = () => {
       {/* Mobile Navigation */}
       <div
         className={cn(
-          'fixed inset-0 z-40 bg-white/80 backdrop-blur-md flex flex-col pt-24 px-6 transition-all duration-300 ease-expo-out md:hidden',
+          'fixed inset-0 z-40 bg-white/90 backdrop-blur-md flex flex-col pt-24 px-6 transition-all duration-300 ease-expo-out md:hidden',
           isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-full pointer-events-none'
         )}
       >
