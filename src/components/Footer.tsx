@@ -12,11 +12,11 @@ const Footer = () => {
           <div>
             <Link to="/" className="flex items-center space-x-2 mb-4">
               <span className="font-display font-bold text-2xl tracking-tight">
-                Precision<span className="text-blue-400">Fab</span>
+                Prutha<span className="text-blue-400">Engineering</span>
               </span>
             </Link>
             <p className="text-steel-300 mb-6">
-              Precision engineering and fabrication solutions for industries that demand excellence.
+              Prutha Engineering Company provides solutions for industries that demand excellence.
             </p>
             <div className="flex space-x-4">
               <a href="#" className="h-10 w-10 flex items-center justify-center rounded-full bg-steel-800 hover:bg-blue-800 transition-colors" aria-label="Facebook">
@@ -119,7 +119,7 @@ const Footer = () => {
               </li>
               <li className="flex">
                 <span className="text-blue-400 mr-2">Email:</span>
-                <a href="mailto:info@precisionfab.com" className="text-steel-300 hover:text-white">info@precisionfab.com</a>
+                <a href="mailto:info@pruthaengineering.com" className="text-steel-300 hover:text-white">info@pruthaengineering.com</a>
               </li>
               <li className="flex">
                 <span className="text-blue-400 mr-2">Hours:</span>
@@ -130,7 +130,7 @@ const Footer = () => {
         </div>
         
         <div className="pt-8 border-t border-steel-800 text-center text-steel-400">
-          <p>&copy; {currentYear} PrecisionFab. All rights reserved.</p>
+          <p>&copy; {currentYear} Prutha Engineering. All rights reserved.</p>
         </div>
       </div>
     </footer>

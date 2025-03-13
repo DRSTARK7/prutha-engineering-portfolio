@@ -39,7 +39,7 @@ const Navbar = () => {
           onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})}
         >
           <span className="font-display font-bold text-2xl tracking-tight">
-            Precision<span className="text-blue-700">Fab</span>
+            Prutha<span className="text-blue-700">Engineering</span>
           </span>
         </Link>
 

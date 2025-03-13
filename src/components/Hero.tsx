@@ -42,7 +42,7 @@ const Hero = () => {
       
       <div className="container-custom relative z-10 text-center px-4 md:px-0">
         <span className="inline-block py-1 px-3 mb-4 text-xs md:text-sm font-semibold text-blue-700 bg-blue-50 rounded-full reveal">
-          Precision Engineering & Fabrication
+          Prutha Engineering Company
         </span>
         
         <h1 
