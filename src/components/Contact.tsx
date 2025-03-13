@@ -1,21 +1,7 @@
 
 import { useEffect, useState } from 'react';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
-import TextField from '@mui/material/TextField';
-import MenuItem from '@mui/material/MenuItem';
-import Button from '@mui/material/Button';
-import Chip from '@mui/material/Chip';
-import Divider from '@mui/material/Divider';
-import { alpha } from '@mui/material/styles';
+import { Phone, Mail, MapPin, Send } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
-import PhoneIcon from '@mui/icons-material/Phone';
-import EmailIcon from '@mui/icons-material/Email';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
-import SendIcon from '@mui/icons-material/Send';
 
 const Contact = () => {
   const { toast } = useToast();
@@ -28,7 +14,7 @@ const Contact = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
@@ -80,264 +66,191 @@ const Contact = () => {
   }, []);
 
   return (
-    <Box id="contact" sx={{ py: { xs: 8, md: 12 }, bgcolor: alpha('#f7f8f9', 0.5) }}>
-      <Container maxWidth="lg">
-        <Box sx={{ maxWidth: '48rem', mx: 'auto', textAlign: 'center', mb: 8 }}>
-          <Chip 
-            label="Contact Us"
-            color="secondary"
-            size="small"
-            sx={{ 
-              mb: 2, 
-              fontWeight: 600,
-              bgcolor: alpha('#4f85dd', 0.1),
-              color: 'secondary.main',
-            }}
-            className="reveal"
-          />
-          <Typography 
-            variant="h2" 
-            className="reveal"
-            sx={{ 
-              mb: 3,
-              fontSize: { xs: '2rem', md: '2.5rem' },
-              fontWeight: 700,
-            }}
-          >
-            Get in touch with our team
-          </Typography>
-          <Typography 
-            variant="body1" 
-            className="reveal"
-            sx={{ fontSize: '1.125rem', color: 'text.secondary' }}
-          >
+    <section id="contact" className="section bg-steel-50/50">
+      <div className="container-custom">
+        <div className="max-w-3xl mx-auto text-center mb-16">
+          <span className="inline-block py-1 px-3 mb-4 text-xs font-semibold text-blue-700 bg-blue-50 rounded-full reveal">
+            Contact Us
+          </span>
+          <h2 className="heading-lg mb-6 reveal">Get in touch with our team</h2>
+          <p className="text-lg text-muted-foreground reveal">
             Have a project in mind or need a quote? Reach out to us and one of our experts will get back to you.
-          </Typography>
-        </Box>
+          </p>
+        </div>
 
-        <Grid container spacing={4}>
-          <Grid item xs={12} md={5} lg={4} className="reveal">
-            <Paper 
-              elevation={1}
-              sx={{ 
-                p: 4, 
-                height: '100%', 
-                display: 'flex',
-                flexDirection: 'column',
-              }}
-            >
-              <Typography variant="h5" sx={{ mb: 4, fontWeight: 600 }}>
-                Contact Information
-              </Typography>
+        <div className="grid md:grid-cols-5 gap-8">
+          <div className="md:col-span-2 reveal">
+            <div className="bg-white p-6 rounded-lg shadow-sm border border-border h-full">
+              <h3 className="heading-sm mb-6">Contact Information</h3>
               
-              <Box sx={{ mb: 4 }}>
-                <Box sx={{ display: 'flex', mb: 3 }}>
-                  <Box 
-                    sx={{ 
-                      mr: 2, 
-                      p: 1, 
-                      bgcolor: alpha('#4f85dd', 0.1),
-                      borderRadius: 1,
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                    }}
-                  >
-                    <PhoneIcon sx={{ color: 'secondary.main' }} />
-                  </Box>
-                  <Box>
-                    <Typography variant="subtitle2" sx={{ fontWeight: 600, mb: 0.5 }}>Phone</Typography>
-                    <Typography variant="body2" color="text.secondary">+1 (555) 123-4567</Typography>
-                  </Box>
-                </Box>
+              <div className="space-y-6">
+                <div className="flex items-start">
+                  <div className="mr-4 p-2 bg-blue-50 rounded-md">
+                    <Phone className="h-5 w-5 text-blue-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-medium mb-1">Phone</h4>
+                    <p className="text-muted-foreground">+1 (555) 123-4567</p>
+                  </div>
+                </div>
                 
-                <Box sx={{ display: 'flex', mb: 3 }}>
-                  <Box 
-                    sx={{ 
-                      mr: 2, 
-                      p: 1, 
-                      bgcolor: alpha('#4f85dd', 0.1),
-                      borderRadius: 1,
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                    }}
-                  >
-                    <EmailIcon sx={{ color: 'secondary.main' }} />
-                  </Box>
-                  <Box>
-                    <Typography variant="subtitle2" sx={{ fontWeight: 600, mb: 0.5 }}>Email</Typography>
-                    <Typography variant="body2" color="text.secondary">info@precisionfab.com</Typography>
-                  </Box>
-                </Box>
+                <div className="flex items-start">
+                  <div className="mr-4 p-2 bg-blue-50 rounded-md">
+                    <Mail className="h-5 w-5 text-blue-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-medium mb-1">Email</h4>
+                    <p className="text-muted-foreground">info@precisionfab.com</p>
+                  </div>
+                </div>
                 
-                <Box sx={{ display: 'flex' }}>
-                  <Box 
-                    sx={{ 
-                      mr: 2, 
-                      p: 1, 
-                      bgcolor: alpha('#4f85dd', 0.1),
-                      borderRadius: 1,
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                    }}
-                  >
-                    <LocationOnIcon sx={{ color: 'secondary.main' }} />
-                  </Box>
-                  <Box>
-                    <Typography variant="subtitle2" sx={{ fontWeight: 600, mb: 0.5 }}>Location</Typography>
-                    <Typography variant="body2" color="text.secondary">
+                <div className="flex items-start">
+                  <div className="mr-4 p-2 bg-blue-50 rounded-md">
+                    <MapPin className="h-5 w-5 text-blue-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-medium mb-1">Location</h4>
+                    <p className="text-muted-foreground">
                       1234 Industrial Parkway<br />
                       Manufacturing District<br />
                       City, State 12345
-                    </Typography>
-                  </Box>
-                </Box>
-              </Box>
+                    </p>
+                  </div>
+                </div>
+              </div>
               
-              <Divider sx={{ my: 3 }} />
-              
-              <Box sx={{ mt: 2 }}>
-                <Typography variant="subtitle1" sx={{ fontWeight: 600, mb: 2 }}>Business Hours</Typography>
-                <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
-                  <Typography variant="body2" color="text.secondary">Monday - Friday</Typography>
-                  <Typography variant="body2">8:00 AM - 5:00 PM</Typography>
-                </Box>
-                <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
-                  <Typography variant="body2" color="text.secondary">Saturday</Typography>
-                  <Typography variant="body2">9:00 AM - 1:00 PM</Typography>
-                </Box>
-                <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                  <Typography variant="body2" color="text.secondary">Sunday</Typography>
-                  <Typography variant="body2">Closed</Typography>
-                </Box>
-              </Box>
-            </Paper>
-          </Grid>
+              <div className="mt-8 pt-6 border-t border-border">
+                <h4 className="font-medium mb-4">Business Hours</h4>
+                <div className="space-y-2">
+                  <div className="flex justify-between">
+                    <span className="text-muted-foreground">Monday - Friday</span>
+                    <span>8:00 AM - 5:00 PM</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-muted-foreground">Saturday</span>
+                    <span>9:00 AM - 1:00 PM</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-muted-foreground">Sunday</span>
+                    <span>Closed</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
           
-          <Grid item xs={12} md={7} lg={8} className="reveal">
-            <Paper 
-              elevation={1}
-              sx={{ p: 4 }}
-            >
-              <Typography variant="h5" sx={{ mb: 4, fontWeight: 600 }}>
-                Send us a message
-              </Typography>
+          <div className="md:col-span-3 reveal">
+            <div className="bg-white p-6 rounded-lg shadow-sm border border-border">
+              <h3 className="heading-sm mb-6">Send us a message</h3>
               
-              <form onSubmit={handleSubmit}>
-                <Grid container spacing={3}>
-                  <Grid item xs={12} sm={6}>
-                    <TextField
-                      fullWidth
-                      required
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <label htmlFor="name" className="text-sm font-medium">
+                      Full Name <span className="text-red-500">*</span>
+                    </label>
+                    <input
                       id="name"
                       name="name"
-                      label="Full Name"
+                      type="text"
                       value={formData.name}
                       onChange={handleChange}
-                      variant="outlined"
-                      size="small"
+                      required
+                      className="w-full px-4 py-2 border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-primary/30"
                       placeholder="John Doe"
                     />
-                  </Grid>
+                  </div>
                   
-                  <Grid item xs={12} sm={6}>
-                    <TextField
-                      fullWidth
-                      required
+                  <div className="space-y-2">
+                    <label htmlFor="email" className="text-sm font-medium">
+                      Email Address <span className="text-red-500">*</span>
+                    </label>
+                    <input
                       id="email"
                       name="email"
-                      label="Email Address"
                       type="email"
                       value={formData.email}
                       onChange={handleChange}
-                      variant="outlined"
-                      size="small"
+                      required
+                      className="w-full px-4 py-2 border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-primary/30"
                       placeholder="john@example.com"
                     />
-                  </Grid>
-                  
-                  <Grid item xs={12} sm={6}>
-                    <TextField
-                      fullWidth
+                  </div>
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <label htmlFor="phone" className="text-sm font-medium">
+                      Phone Number
+                    </label>
+                    <input
                       id="phone"
                       name="phone"
-                      label="Phone Number"
+                      type="tel"
                       value={formData.phone}
                       onChange={handleChange}
-                      variant="outlined"
-                      size="small"
+                      className="w-full px-4 py-2 border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-primary/30"
                       placeholder="+1 (555) 123-4567"
                     />
-                  </Grid>
+                  </div>
                   
-                  <Grid item xs={12} sm={6}>
-                    <TextField
-                      fullWidth
-                      required
+                  <div className="space-y-2">
+                    <label htmlFor="subject" className="text-sm font-medium">
+                      Subject <span className="text-red-500">*</span>
+                    </label>
+                    <select
                       id="subject"
                       name="subject"
-                      label="Subject"
-                      select
                       value={formData.subject}
                       onChange={handleChange}
-                      variant="outlined"
-                      size="small"
-                    >
-                      <MenuItem value="">Select a subject</MenuItem>
-                      <MenuItem value="quote">Request a Quote</MenuItem>
-                      <MenuItem value="info">General Information</MenuItem>
-                      <MenuItem value="support">Technical Support</MenuItem>
-                      <MenuItem value="other">Other</MenuItem>
-                    </TextField>
-                  </Grid>
-                  
-                  <Grid item xs={12}>
-                    <TextField
-                      fullWidth
                       required
-                      id="message"
-                      name="message"
-                      label="Message"
-                      multiline
-                      rows={5}
-                      value={formData.message}
-                      onChange={handleChange}
-                      variant="outlined"
-                      placeholder="Tell us about your project or inquiry..."
-                    />
-                  </Grid>
-                  
-                  <Grid item xs={12}>
-                    <Button
-                      type="submit"
-                      variant="contained"
-                      color="primary"
-                      size="large"
-                      disabled={isSubmitting}
-                      endIcon={<SendIcon />}
-                      sx={{ 
-                        px: 4,
-                        py: 1.5,
-                        mt: 2,
-                        '&:hover': {
-                          transform: 'translateY(-2px)',
-                          boxShadow: 3,
-                        },
-                        transition: 'all 0.3s ease',
-                      }}
+                      className="w-full px-4 py-2 border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-primary/30"
                     >
-                      {isSubmitting ? 'Processing...' : 'Send Message'}
-                    </Button>
-                  </Grid>
-                </Grid>
+                      <option value="">Select a subject</option>
+                      <option value="quote">Request a Quote</option>
+                      <option value="info">General Information</option>
+                      <option value="support">Technical Support</option>
+                      <option value="other">Other</option>
+                    </select>
+                  </div>
+                </div>
+                
+                <div className="space-y-2">
+                  <label htmlFor="message" className="text-sm font-medium">
+                    Message <span className="text-red-500">*</span>
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    required
+                    rows={5}
+                    className="w-full px-4 py-2 border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-primary/30"
+                    placeholder="Tell us about your project or inquiry..."
+                  ></textarea>
+                </div>
+                
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="flex items-center justify-center w-full md:w-auto px-6 py-3 bg-primary text-primary-foreground rounded-md shadow-sm hover:shadow transition-all focus-ring disabled:opacity-70"
+                >
+                  {isSubmitting ? (
+                    <>Processing...</>
+                  ) : (
+                    <>
+                      Send Message
+                      <Send className="ml-2 h-4 w-4" />
+                    </>
+                  )}
+                </button>
               </form>
-            </Paper>
-          </Grid>
-        </Grid>
-      </Container>
-    </Box>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 };
 

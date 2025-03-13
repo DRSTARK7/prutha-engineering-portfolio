@@ -1,90 +1,89 @@
 
-import { Button, Typography, Row, Col, Space } from "antd";
-import { ArrowRightOutlined } from "@ant-design/icons";
+import { useEffect, useRef } from 'react';
+import { ChevronDown } from 'lucide-react';
 
-const { Title, Paragraph } = Typography;
+const Hero = () => {
+  const titleRef = useRef<HTMLHeadingElement>(null);
+  
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
 
-export const Hero = () => {
+    const elements = document.querySelectorAll('.reveal');
+    elements.forEach((el) => observer.observe(el));
+
+    return () => {
+      elements.forEach((el) => observer.unobserve(el));
+    };
+  }, []);
+
+  const scrollToNextSection = () => {
+    const aboutSection = document.getElementById('about');
+    if (aboutSection) {
+      aboutSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
-    <div
-      style={{
-        minHeight: "90vh",
-        background: "linear-gradient(135deg, #f0f5fc 0%, #e0e9f8 100%)",
-        padding: "0 24px",
-        display: "flex",
-        alignItems: "center",
-      }}
-    >
-      <Row 
-        justify="center" 
-        align="middle" 
-        style={{ width: "100%", maxWidth: 1200, margin: "0 auto" }}
+    <section id="hero" className="relative h-screen w-full overflow-hidden flex items-center justify-center bg-grid">
+      <div className="absolute inset-0 bg-gradient-to-b from-blue-50/50 via-transparent to-background z-0"></div>
+      
+      {/* Decorative elements */}
+      <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-blue-200/20 rounded-full filter blur-3xl animate-pulse-slow"></div>
+      <div className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-steel-200/30 rounded-full filter blur-3xl animate-pulse-slow"></div>
+      
+      <div className="container-custom relative z-10 text-center">
+        <span className="inline-block py-1 px-3 mb-4 text-xs font-semibold text-blue-700 bg-blue-50 rounded-full reveal">
+          Precision Engineering & Fabrication
+        </span>
+        
+        <h1 
+          ref={titleRef} 
+          className="heading-xl mb-6 reveal"
+          style={{ animationDelay: "200ms" }}
+        >
+          Crafting the future with <br />
+          <span className="text-blue-700">precision</span> and <span className="text-steel-700">innovation</span>
+        </h1>
+        
+        <p className="max-w-2xl mx-auto text-lg text-muted-foreground mb-8 reveal" style={{ animationDelay: "400ms" }}>
+          Transforming raw materials into sophisticated solutions through state-of-the-art 
+          vertical machining centers and expert fabrication techniques.
+        </p>
+        
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 reveal" style={{ animationDelay: "600ms" }}>
+          <a 
+            href="#contact" 
+            className="px-6 py-3 bg-primary text-primary-foreground rounded-md shadow-md hover:shadow-lg transition-all hover:-translate-y-0.5 focus-ring"
+          >
+            Get in Touch
+          </a>
+          <a 
+            href="#services" 
+            className="px-6 py-3 border border-primary/20 rounded-md hover:bg-primary/5 transition-all hover:-translate-y-0.5 focus-ring"
+          >
+            Explore Our Services
+          </a>
+        </div>
+      </div>
+      
+      <button 
+        onClick={scrollToNextSection}
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-float focus-ring"
+        aria-label="Scroll down"
       >
-        <Col xs={24} md={12} style={{ padding: "24px" }}>
-          <div style={{ maxWidth: 580 }}>
-            <Title 
-              level={1} 
-              style={{ 
-                fontSize: "3.5rem", 
-                fontWeight: 800,
-                marginBottom: 16,
-                color: "#1e2632"
-              }}
-            >
-              Precision Engineering Solutions
-            </Title>
-            <Paragraph 
-              style={{ 
-                fontSize: "1.25rem", 
-                color: "#566a85",
-                marginBottom: 32 
-              }}
-            >
-              Innovative design, expert fabrication, and cutting-edge manufacturing
-              technology for your most challenging engineering projects.
-            </Paragraph>
-            <Space size="large">
-              <Button 
-                type="primary" 
-                size="large"
-                style={{
-                  height: 48,
-                  fontSize: "1rem",
-                  borderRadius: 8,
-                  background: "#386ad0",
-                }}
-                onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
-              >
-                Contact Us
-              </Button>
-              <Button 
-                type="text" 
-                size="large"
-                style={{
-                  height: 48,
-                  fontSize: "1rem",
-                  color: "#386ad0",
-                }}
-                onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}
-                icon={<ArrowRightOutlined />}
-              >
-                View Our Work
-              </Button>
-            </Space>
-          </div>
-        </Col>
-        <Col xs={24} md={12} style={{ padding: "24px" }}>
-          <div
-            style={{
-              width: "100%",
-              height: 400,
-              background: "url('https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80') center/cover no-repeat",
-              borderRadius: 16,
-              boxShadow: "0 8px 30px rgba(0, 0, 0, 0.12)",
-            }}
-          />
-        </Col>
-      </Row>
-    </div>
+        <ChevronDown size={24} className="text-muted-foreground" />
+      </button>
+    </section>
   );
 };
+
+export default Hero;

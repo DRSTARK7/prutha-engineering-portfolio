@@ -1,10 +1,8 @@
-
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 
 const NotFound = () => {
   const location = useLocation();
-  const navigate = useNavigate();
 
   useEffect(() => {
     console.error(
@@ -14,16 +12,13 @@ const NotFound = () => {
   }, [location.pathname]);
 
   return (
-    <div className="h-screen flex items-center justify-center px-4">
+    <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="text-center">
-        <h1 className="text-9xl font-bold text-blue-600">404</h1>
-        <h2 className="text-2xl font-semibold mt-4 mb-6">Sorry, the page you visited does not exist.</h2>
-        <button 
-          onClick={() => navigate("/")}
-          className="px-6 py-3 bg-blue-600 text-white rounded-lg text-lg font-medium hover:bg-blue-700 transition-colors"
-        >
-          Back Home
-        </button>
+        <h1 className="text-4xl font-bold mb-4">404</h1>
+        <p className="text-xl text-gray-600 mb-4">Oops! Page not found</p>
+        <a href="/" className="text-blue-500 hover:text-blue-700 underline">
+          Return to Home
+        </a>
       </div>
     </div>
   );

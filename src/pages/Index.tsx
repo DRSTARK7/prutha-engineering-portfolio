@@ -1,10 +1,12 @@
 
-import { useEffect } from "react";
-import { Hero } from "@/components/Hero";
-import { AboutSection } from "@/components/AboutSection";
-import { ServicesSection } from "@/components/ServicesSection";
-import { ProjectsSection } from "@/components/ProjectsSection";
-import { ContactSection } from "@/components/ContactSection";
+import { useEffect } from 'react';
+import Navbar from '@/components/Navbar';
+import Hero from '@/components/Hero';
+import About from '@/components/About';
+import Services from '@/components/Services';
+import Projects from '@/components/Projects';
+import Contact from '@/components/Contact';
+import Footer from '@/components/Footer';
 
 const Index = () => {
   useEffect(() => {
@@ -31,36 +33,14 @@ const Index = () => {
   }, []);
 
   return (
-    <div>
-      <div id="hero">
-        <Hero />
-      </div>
-      <div id="about" className="reveal section-padding">
-        <AboutSection />
-      </div>
-      <div id="services" className="reveal section-padding">
-        <ServicesSection />
-      </div>
-      <div id="projects" className="reveal section-padding">
-        <ProjectsSection />
-      </div>
-      <div id="contact" className="reveal section-padding">
-        <ContactSection />
-      </div>
-      
-      {/* Side navigation dots for desktop */}
-      <div className="fixed right-6 top-1/2 transform -translate-y-1/2 z-40 hidden md:block">
-        <div className="flex flex-col space-y-4">
-          {["hero", "about", "services", "projects", "contact"].map((section) => (
-            <a 
-              key={section}
-              href={`#${section}`}
-              className="w-3 h-3 rounded-full bg-gray-300 hover:bg-blue-500 transition-colors"
-              aria-label={`Navigate to ${section} section`}
-            />
-          ))}
-        </div>
-      </div>
+    <div className="min-h-screen">
+      <Navbar />
+      <Hero />
+      <About />
+      <Services />
+      <Projects />
+      <Contact />
+      <Footer />
     </div>
   );
 };
