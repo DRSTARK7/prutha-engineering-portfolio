@@ -1,9 +1,8 @@
 
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -39,10 +38,6 @@ const Navbar = () => {
           className="flex items-center space-x-2"
           onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})}
         >
-          <Avatar className="h-10 w-10 border border-blue-100">
-            <AvatarImage src="https://images.unsplash.com/photo-1501854140801-50d01698950b?auto=format&fit=crop&q=80&w=50" alt="Prutha Engineering" />
-            <AvatarFallback className="bg-blue-50 text-blue-700 font-bold">PE</AvatarFallback>
-          </Avatar>
           <span className="font-display font-bold text-2xl tracking-tight">
             Prutha<span className="text-blue-700">Engineering</span>
           </span>
