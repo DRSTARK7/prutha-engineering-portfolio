@@ -1,6 +1,7 @@
 
 import { useEffect } from 'react';
 import { Clock, Shield, Users, BadgeCheck } from 'lucide-react';
+import { AspectRatio } from '@/components/ui/aspect-ratio';
 
 const About = () => {
   useEffect(() => {
@@ -80,12 +81,20 @@ const About = () => {
         <div className="mt-24 grid md:grid-cols-2 gap-12 items-center">
           <div className="reveal">
             <div className="relative">
-              <div className="aspect-[4/3] rounded-lg overflow-hidden bg-steel-200 bg-grain">
-                <div className="absolute inset-0 bg-blue-900/10"></div>
-              </div>
-              <div className="absolute -bottom-6 -right-6 w-2/3 aspect-[4/3] rounded-lg overflow-hidden bg-blue-100 bg-grain">
-                <div className="absolute inset-0 bg-blue-900/10"></div>
-              </div>
+              <AspectRatio ratio={4/3} className="rounded-lg overflow-hidden mb-6">
+                <img 
+                  src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&q=80&w=1200" 
+                  alt="Precision engineering facility"
+                  className="object-cover w-full h-full"
+                />
+              </AspectRatio>
+              <AspectRatio ratio={4/3} className="absolute -bottom-6 -right-6 w-2/3 rounded-lg overflow-hidden shadow-xl">
+                <img 
+                  src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=800" 
+                  alt="Engineering precision work" 
+                  className="object-cover w-full h-full"
+                />
+              </AspectRatio>
             </div>
           </div>
           

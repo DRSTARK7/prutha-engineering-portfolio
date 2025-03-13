@@ -15,49 +15,49 @@ const Projects = () => {
   const [filteredProjects, setFilteredProjects] = useState<Project[]>([]);
 
   useEffect(() => {
-    // Sample project data
+    // Sample project data with real images
     const sampleProjects: Project[] = [
       {
         id: 1,
         title: 'Precision Milled Components',
         category: 'vmc',
         description: 'High-precision aluminum components for aerospace applications with tight tolerances.',
-        image: 'bg-steel-200'
+        image: 'https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&q=80&w=800'
       },
       {
         id: 2,
         title: 'Custom Steel Fabrication',
         category: 'fabrication',
         description: 'Custom steel structures designed and fabricated for industrial equipment.',
-        image: 'bg-steel-300'
+        image: 'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&q=80&w=800'
       },
       {
         id: 3,
         title: 'CNC Machined Parts',
         category: 'vmc',
         description: 'Complex geometries machined from solid blocks for the automotive industry.',
-        image: 'bg-blue-200'
+        image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&q=80&w=800'
       },
       {
         id: 4,
         title: 'Sheet Metal Assembly',
         category: 'fabrication',
         description: 'Precision sheet metal components with complex bends and welded assemblies.',
-        image: 'bg-blue-300'
+        image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=800'
       },
       {
         id: 5,
         title: 'Multi-axis Machining',
         category: 'vmc',
         description: 'Multi-axis machined components with intricate features and surface finishes.',
-        image: 'bg-steel-200'
+        image: 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&q=80&w=800'
       },
       {
         id: 6,
         title: 'Metal Framework',
         category: 'fabrication',
         description: 'Structural steel framework with precision welding and surface treatments.',
-        image: 'bg-blue-200'
+        image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=800'
       }
     ];
 
@@ -147,8 +147,12 @@ const Projects = () => {
               className="group overflow-hidden rounded-lg shadow-sm border border-border hover:shadow-md transition-all reveal"
               style={{ animationDelay: `${index * 100}ms` }}
             >
-              <div className={`aspect-video ${project.image} bg-grain relative overflow-hidden`}>
-                <div className="absolute inset-0 bg-blue-900/10"></div>
+              <div className="aspect-video relative overflow-hidden">
+                <img 
+                  src={project.image} 
+                  alt={project.title} 
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
               <div className="p-6">
