@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X, ChevronDown } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const Navbar = () => {
@@ -28,7 +28,7 @@ const Navbar = () => {
   return (
     <nav 
       className={cn(
-        'fixed top-0 w-full z-50 transition-all duration-300 ease-expo-out py-4 px-6',
+        'fixed top-0 w-full z-50 transition-all duration-300 ease-in-out py-4 px-6',
         scrolled ? 'bg-white/90 backdrop-blur-md shadow-sm' : 'bg-transparent'
       )}
     >
@@ -77,25 +77,29 @@ const Navbar = () => {
       </div>
 
       {/* Mobile Navigation */}
-      <div
-        className={cn(
-          'fixed inset-0 z-40 bg-white/90 backdrop-blur-md flex flex-col pt-24 px-6 transition-all duration-300 ease-expo-out md:hidden',
-          isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-full pointer-events-none'
-        )}
-      >
-        <div className="flex flex-col space-y-6">
-          {navLinks.map((link) => (
+      {isOpen && (
+        <div className="fixed inset-0 z-40 bg-white/95 backdrop-blur-md flex flex-col pt-24 px-6 md:hidden">
+          <div className="flex flex-col space-y-6">
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.path}
+                className="text-lg font-medium transition-colors hover:text-primary"
+                onClick={() => setIsOpen(false)}
+              >
+                {link.name}
+              </a>
+            ))}
             <a
-              key={link.name}
-              href={link.path}
-              className="text-lg font-medium transition-colors hover:text-primary"
+              href="#contact"
+              className="px-4 py-2 bg-primary text-primary-foreground rounded-md shadow-sm hover:shadow-md transition-all w-full text-center"
               onClick={() => setIsOpen(false)}
             >
-              {link.name}
+              Get Started
             </a>
-          ))}
+          </div>
         </div>
-      </div>
+      )}
     </nav>
   );
 };
