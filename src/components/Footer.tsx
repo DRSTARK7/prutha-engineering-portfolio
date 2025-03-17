@@ -1,136 +1,79 @@
 
-import { Link } from 'react-router-dom';
-import { ChevronRight, Facebook, Twitter, Linkedin, Instagram } from 'lucide-react';
+import React from 'react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   
   return (
-    <footer className="bg-steel-900 text-white py-16">
+    <footer className="footer">
       <div className="container-custom">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-          <div>
-            <Link to="/" className="flex items-center space-x-2 mb-4">
-              <span className="font-display font-bold text-2xl tracking-tight">
-                Prutha<span className="text-blue-400">Engineering</span>
-              </span>
-            </Link>
-            <p className="text-steel-300 mb-6">
-              Prutha Engineering Company provides solutions for industries that demand excellence.
-            </p>
-            <div className="flex space-x-4">
-              <a href="#" className="h-10 w-10 flex items-center justify-center rounded-full bg-steel-800 hover:bg-blue-800 transition-colors" aria-label="Facebook">
-                <Facebook className="h-5 w-5" />
+        <div className="footer-grid">
+          <div className="footer-brand">
+            <a href="#" className="footer-logo">Prutha <span>Engineering</span></a>
+            <p>Delivering precision machining and metal fabrication services with exceptional quality and reliability since 1995.</p>
+            <div className="social-links">
+              <a href="#" aria-label="Facebook">
+                <i data-lucide="facebook" className="lucide-icon"></i>
               </a>
-              <a href="#" className="h-10 w-10 flex items-center justify-center rounded-full bg-steel-800 hover:bg-blue-800 transition-colors" aria-label="Twitter">
-                <Twitter className="h-5 w-5" />
+              <a href="#" aria-label="LinkedIn">
+                <i data-lucide="linkedin" className="lucide-icon"></i>
               </a>
-              <a href="#" className="h-10 w-10 flex items-center justify-center rounded-full bg-steel-800 hover:bg-blue-800 transition-colors" aria-label="LinkedIn">
-                <Linkedin className="h-5 w-5" />
+              <a href="#" aria-label="Twitter">
+                <i data-lucide="twitter" className="lucide-icon"></i>
               </a>
-              <a href="#" className="h-10 w-10 flex items-center justify-center rounded-full bg-steel-800 hover:bg-blue-800 transition-colors" aria-label="Instagram">
-                <Instagram className="h-5 w-5" />
+              <a href="#" aria-label="Instagram">
+                <i data-lucide="instagram" className="lucide-icon"></i>
               </a>
             </div>
           </div>
           
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
-            <ul className="space-y-3">
-              <li>
-                <a href="#hero" className="text-steel-300 hover:text-white flex items-center group">
-                  <ChevronRight className="h-4 w-4 mr-1 opacity-0 group-hover:opacity-100 -ml-5 group-hover:ml-0 transition-all" />
-                  Home
-                </a>
-              </li>
-              <li>
-                <a href="#about" className="text-steel-300 hover:text-white flex items-center group">
-                  <ChevronRight className="h-4 w-4 mr-1 opacity-0 group-hover:opacity-100 -ml-5 group-hover:ml-0 transition-all" />
-                  About Us
-                </a>
-              </li>
-              <li>
-                <a href="#services" className="text-steel-300 hover:text-white flex items-center group">
-                  <ChevronRight className="h-4 w-4 mr-1 opacity-0 group-hover:opacity-100 -ml-5 group-hover:ml-0 transition-all" />
-                  Services
-                </a>
-              </li>
-              <li>
-                <a href="#projects" className="text-steel-300 hover:text-white flex items-center group">
-                  <ChevronRight className="h-4 w-4 mr-1 opacity-0 group-hover:opacity-100 -ml-5 group-hover:ml-0 transition-all" />
-                  Projects
-                </a>
-              </li>
-              <li>
-                <a href="#contact" className="text-steel-300 hover:text-white flex items-center group">
-                  <ChevronRight className="h-4 w-4 mr-1 opacity-0 group-hover:opacity-100 -ml-5 group-hover:ml-0 transition-all" />
-                  Contact
-                </a>
-              </li>
+          <div className="footer-links">
+            <h3>Quick Links</h3>
+            <ul>
+              <li><a href="#about">About Us</a></li>
+              <li><a href="#services">Our Services</a></li>
+              <li><a href="#projects">Projects</a></li>
+              <li><a href="#contact">Contact Us</a></li>
+              <li><a href="#">Request Quote</a></li>
             </ul>
           </div>
           
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Services</h3>
-            <ul className="space-y-3">
-              <li>
-                <a href="#services" className="text-steel-300 hover:text-white flex items-center group">
-                  <ChevronRight className="h-4 w-4 mr-1 opacity-0 group-hover:opacity-100 -ml-5 group-hover:ml-0 transition-all" />
-                  VMC Machining
-                </a>
-              </li>
-              <li>
-                <a href="#services" className="text-steel-300 hover:text-white flex items-center group">
-                  <ChevronRight className="h-4 w-4 mr-1 opacity-0 group-hover:opacity-100 -ml-5 group-hover:ml-0 transition-all" />
-                  Metal Fabrication
-                </a>
-              </li>
-              <li>
-                <a href="#services" className="text-steel-300 hover:text-white flex items-center group">
-                  <ChevronRight className="h-4 w-4 mr-1 opacity-0 group-hover:opacity-100 -ml-5 group-hover:ml-0 transition-all" />
-                  Industrial Solutions
-                </a>
-              </li>
-              <li>
-                <a href="#services" className="text-steel-300 hover:text-white flex items-center group">
-                  <ChevronRight className="h-4 w-4 mr-1 opacity-0 group-hover:opacity-100 -ml-5 group-hover:ml-0 transition-all" />
-                  Engineering Services
-                </a>
-              </li>
-              <li>
-                <a href="#services" className="text-steel-300 hover:text-white flex items-center group">
-                  <ChevronRight className="h-4 w-4 mr-1 opacity-0 group-hover:opacity-100 -ml-5 group-hover:ml-0 transition-all" />
-                  Custom Projects
-                </a>
-              </li>
+          <div className="footer-links">
+            <h3>Our Services</h3>
+            <ul>
+              <li><a href="#services">CNC Machining</a></li>
+              <li><a href="#services">Metal Fabrication</a></li>
+              <li><a href="#services">Welding & Assembly</a></li>
+              <li><a href="#services">Engineering Support</a></li>
+              <li><a href="#services">Custom Solutions</a></li>
             </ul>
           </div>
           
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Contact Info</h3>
-            <ul className="space-y-3">
-              <li className="flex">
-                <span className="text-blue-400 mr-2">Location:</span>
-                <span className="text-steel-300">1234 Industrial Parkway, City, State 12345</span>
+          <div className="footer-contact">
+            <h3>Contact Us</h3>
+            <ul>
+              <li>
+                <span>Address:</span>
+                <span>1234 Industrial Parkway, Metropolis, CA 90001</span>
               </li>
-              <li className="flex">
-                <span className="text-blue-400 mr-2">Phone:</span>
-                <a href="tel:+15551234567" className="text-steel-300 hover:text-white">+1 (555) 123-4567</a>
+              <li>
+                <span>Phone:</span>
+                <a href="tel:+15551234567">(555) 123-4567</a>
               </li>
-              <li className="flex">
-                <span className="text-blue-400 mr-2">Email:</span>
-                <a href="mailto:info@pruthaengineering.com" className="text-steel-300 hover:text-white">info@pruthaengineering.com</a>
+              <li>
+                <span>Email:</span>
+                <a href="mailto:info@pruthaengineering.com">info@pruthaengineering.com</a>
               </li>
-              <li className="flex">
-                <span className="text-blue-400 mr-2">Hours:</span>
-                <span className="text-steel-300">Mon-Fri: 8am - 5pm</span>
+              <li>
+                <span>Hours:</span>
+                <span>Mon-Fri: 8am-5pm, Sat: 9am-1pm</span>
               </li>
             </ul>
           </div>
         </div>
         
-        <div className="pt-8 border-t border-steel-800 text-center text-steel-400">
-          <p>&copy; {currentYear} Prutha Engineering. All rights reserved.</p>
+        <div className="footer-bottom">
+          <p>© <span id="current-year">{currentYear}</span> Prutha Engineering Company. All rights reserved.</p>
         </div>
       </div>
     </footer>
