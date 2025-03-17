@@ -1,55 +1,77 @@
 
-// Wait for the DOM to be fully loaded
-document.addEventListener('DOMContentLoaded', function() {
+// Make sure the DOM is fully loaded
+function initializeWebsite() {
   // Initialize Lucide icons
-  lucide.createIcons();
+  if (window.lucide) {
+    window.lucide.createIcons();
+  }
   
   // Set current year in footer
-  document.getElementById('current-year').textContent = new Date().getFullYear();
+  const yearElement = document.getElementById('current-year');
+  if (yearElement) {
+    yearElement.textContent = new Date().getFullYear();
+  }
   
   // Mobile menu toggle
   const mobileMenuBtn = document.getElementById('mobile-menu-btn');
   const mobileNav = document.getElementById('mobile-nav');
   
-  mobileMenuBtn.addEventListener('click', function() {
-    mobileNav.classList.toggle('open');
-    
-    // Change icon between menu and x
-    const icon = mobileMenuBtn.querySelector('.lucide-icon');
-    if (mobileNav.classList.contains('open')) {
-      icon.setAttribute('data-lucide', 'x');
-    } else {
-      icon.setAttribute('data-lucide', 'menu');
-    }
-    lucide.createIcons();
-  });
-  
-  // Close mobile menu when clicking on a link
-  const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
-  mobileNavLinks.forEach(link => {
-    link.addEventListener('click', function() {
-      mobileNav.classList.remove('open');
-      mobileMenuBtn.querySelector('.lucide-icon').setAttribute('data-lucide', 'menu');
-      lucide.createIcons();
+  if (mobileMenuBtn && mobileNav) {
+    mobileMenuBtn.addEventListener('click', function() {
+      mobileNav.classList.toggle('open');
+      
+      // Change icon between menu and x
+      const icon = mobileMenuBtn.querySelector('.lucide-icon');
+      if (icon) {
+        if (mobileNav.classList.contains('open')) {
+          icon.setAttribute('data-lucide', 'x');
+        } else {
+          icon.setAttribute('data-lucide', 'menu');
+        }
+        if (window.lucide) {
+          window.lucide.createIcons();
+        }
+      }
     });
-  });
+  
+    // Close mobile menu when clicking on a link
+    const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+    mobileNavLinks.forEach(link => {
+      link.addEventListener('click', function() {
+        mobileNav.classList.remove('open');
+        const icon = mobileMenuBtn.querySelector('.lucide-icon');
+        if (icon) {
+          icon.setAttribute('data-lucide', 'menu');
+          if (window.lucide) {
+            window.lucide.createIcons();
+          }
+        }
+      });
+    });
+  }
   
   // Navbar scroll effect
   const navbar = document.querySelector('.navbar');
-  window.addEventListener('scroll', function() {
-    if (window.scrollY > 10) {
-      navbar.classList.add('scrolled');
-    } else {
-      navbar.classList.remove('scrolled');
-    }
-  });
+  if (navbar) {
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 10) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+  }
   
   // Scroll down button
   const scrollDownBtn = document.getElementById('scroll-down-btn');
-  scrollDownBtn.addEventListener('click', function() {
-    const aboutSection = document.getElementById('about');
-    aboutSection.scrollIntoView({ behavior: 'smooth' });
-  });
+  if (scrollDownBtn) {
+    scrollDownBtn.addEventListener('click', function() {
+      const aboutSection = document.getElementById('about');
+      if (aboutSection) {
+        aboutSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  }
   
   // Sample project data
   const projectsData = [
@@ -100,6 +122,8 @@ document.addEventListener('DOMContentLoaded', function() {
   // Render projects
   function renderProjects(projects) {
     const projectsGrid = document.getElementById('projects-grid');
+    if (!projectsGrid) return;
+    
     projectsGrid.innerHTML = '';
     
     projects.forEach((project, index) => {
@@ -166,32 +190,36 @@ document.addEventListener('DOMContentLoaded', function() {
   const submitBtn = document.getElementById('submit-btn');
   const toast = document.getElementById('toast');
   
-  contactForm.addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    // Show processing state
-    submitBtn.disabled = true;
-    submitBtn.innerHTML = 'Processing...';
-    
-    // Simulate form submission (would be replaced with actual AJAX in production)
-    setTimeout(() => {
-      // Show success message
-      toast.classList.add('show');
+  if (contactForm && submitBtn && toast) {
+    contactForm.addEventListener('submit', function(e) {
+      e.preventDefault();
       
-      // Reset form
-      contactForm.reset();
+      // Show processing state
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = 'Processing...';
       
-      // Reset button
-      submitBtn.disabled = false;
-      submitBtn.innerHTML = 'Send Message <i data-lucide="send" class="lucide-icon"></i>';
-      lucide.createIcons();
-      
-      // Hide toast after 5 seconds
+      // Simulate form submission (would be replaced with actual AJAX in production)
       setTimeout(() => {
-        toast.classList.remove('show');
-      }, 5000);
-    }, 1500);
-  });
+        // Show success message
+        toast.classList.add('show');
+        
+        // Reset form
+        contactForm.reset();
+        
+        // Reset button
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = 'Send Message <i data-lucide="send" class="lucide-icon"></i>';
+        if (window.lucide) {
+          window.lucide.createIcons();
+        }
+        
+        // Hide toast after 5 seconds
+        setTimeout(() => {
+          toast.classList.remove('show');
+        }, 5000);
+      }, 1500);
+    });
+  }
   
   // Intersection Observer for scroll animations
   function initIntersectionObserver() {
@@ -213,4 +241,24 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Initialize scroll animations
   initIntersectionObserver();
+}
+
+// Check if document is already loaded
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initializeWebsite);
+} else {
+  // If DOMContentLoaded has already fired, run initializeWebsite immediately
+  setTimeout(initializeWebsite, 0);
+}
+
+// Add a fallback to ensure the website initializes
+window.addEventListener('load', initializeWebsite);
+
+// For React applications, also check for root element changes
+const observer = new MutationObserver(function(mutations) {
+  if (document.getElementById('root') && document.getElementById('root').children.length > 0) {
+    initializeWebsite();
+  }
 });
+
+observer.observe(document.body, { childList: true, subtree: true });
