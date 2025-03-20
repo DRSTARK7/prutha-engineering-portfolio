@@ -1,6 +1,5 @@
 
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -33,15 +32,15 @@ const Navbar = () => {
       )}
     >
       <div className="container-custom flex items-center justify-between">
-        <Link 
-          to="/" 
+        <a 
+          href="#hero" 
           className="flex items-center space-x-2"
           onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})}
         >
-          <span className="font-display font-bold text-2xl tracking-tight">
+          <span className="font-bold text-2xl tracking-tight">
             Prutha<span className="text-blue-700">Engineering</span>
           </span>
-        </Link>
+        </a>
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center space-x-8">
@@ -49,14 +48,14 @@ const Navbar = () => {
             <a
               key={link.name}
               href={link.path}
-              className="text-sm font-medium transition-colors hover:text-primary focus-ring"
+              className="text-sm font-medium transition-colors hover:text-primary"
             >
               {link.name}
             </a>
           ))}
           <a
             href="#contact"
-            className="px-4 py-2 bg-primary text-primary-foreground rounded-md shadow-sm hover:shadow-md transition-all hover:-translate-y-0.5 focus-ring"
+            className="px-4 py-2 bg-primary text-primary-foreground rounded-md shadow-sm hover:shadow-md transition-all hover:-translate-y-0.5"
           >
             Get Started
           </a>
@@ -65,7 +64,7 @@ const Navbar = () => {
         {/* Mobile menu button */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden focus-ring rounded-full p-2"
+          className="md:hidden rounded-full p-2"
           aria-label="Toggle menu"
         >
           {isOpen ? (
