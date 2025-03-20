@@ -1,579 +1,288 @@
-
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Prutha Engineering Company</title>
-    <meta name="description" content="Crafting the future with precision and innovation" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://unpkg.com/lucide@latest"></script>
-  </head>
-  <body>
-    <div id="root">
-      <!-- Navbar -->
-      <nav class="navbar">
-        <div class="container-custom">
-          <a href="#" class="logo">
-            Prutha<span>Engineering</span>
-          </a>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prutha Engineering Company</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="#" class="logo">
+        Prutha<span>Engineering</span>
+      </a>
 
-          <!-- Desktop Navigation -->
-          <div class="desktop-nav">
-            <a href="#hero" class="nav-link">Home</a>
-            <a href="#about" class="nav-link">About</a>
-            <a href="#services" class="nav-link">Services</a>
-            <a href="#projects" class="nav-link">Projects</a>
-            <a href="#contact" class="nav-link">Contact</a>
-            <a href="#contact" class="btn-primary">Get Started</a>
+      <div class="desktop-nav">
+        <a href="#hero">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+        <a href="#contact" class="cta-btn">Get Started</a>
+      </div>
+
+      <button class="mobile-menu-btn">
+        <span class="menu-icon"></span>
+      </button>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav">
+      <a href="#hero">Home</a>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+      <a href="#contact" class="cta-btn">Get Started</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="hero" class="hero">
+    <div class="hero-bg-elements">
+      <div class="bg-element-1"></div>
+      <div class="bg-element-2"></div>
+    </div>
+    
+    <div class="container">
+      <span class="badge">Prutha Engineering Company</span>
+      
+      <h1>
+        Crafting the future with <br class="desktop-only">
+        <span class="accent-1">precision</span> and <span class="accent-2">innovation</span>
+      </h1>
+      
+      <p>
+        Transforming raw materials into sophisticated solutions through state-of-the-art 
+        vertical machining centers and expert fabrication techniques.
+      </p>
+      
+      <div class="cta-buttons">
+        <a href="#contact" class="primary-btn">Get in Touch</a>
+        <a href="#services" class="secondary-btn">Explore Our Services</a>
+      </div>
+    </div>
+    
+    <button class="scroll-down-btn" aria-label="Scroll down">
+      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="6 9 12 15 18 9"></polyline>
+      </svg>
+    </button>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="about">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge">About Us</span>
+        <h2>Precision engineered for excellence</h2>
+        <p>
+          With over two decades of experience, we specialize in high-precision fabrication and 
+          vertical machining center operations, delivering exceptional quality and innovative solutions 
+          for diverse industrial needs.
+        </p>
+      </div>
+
+      <div class="features">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
           </div>
-
-          <!-- Mobile menu button -->
-          <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle menu">
-            <i data-lucide="menu" class="lucide-icon"></i>
-          </button>
+          <h3>Timely Delivery</h3>
+          <p>We understand the importance of deadlines and commit to delivering projects on schedule without compromising quality.</p>
         </div>
-
-        <!-- Mobile Navigation -->
-        <div id="mobile-nav" class="mobile-nav">
-          <div class="mobile-nav-links">
-            <a href="#hero" class="mobile-nav-link">Home</a>
-            <a href="#about" class="mobile-nav-link">About</a>
-            <a href="#services" class="mobile-nav-link">Services</a>
-            <a href="#projects" class="mobile-nav-link">Projects</a>
-            <a href="#contact" class="mobile-nav-link">Contact</a>
-            <a href="#contact" class="btn-primary">Get Started</a>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
           </div>
+          <h3>Quality Assurance</h3>
+          <p>Every project undergoes rigorous quality checks to ensure precision, durability, and compliance with industry standards.</p>
         </div>
-      </nav>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+          </div>
+          <h3>Expert Team</h3>
+          <p>Our workforce comprises skilled engineers and technicians with extensive experience in fabrication and machining.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+              <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+          </div>
+          <h3>Certified Processes</h3>
+          <p>We adhere to industry-certified processes and maintain stringent quality control measures throughout production.</p>
+        </div>
+      </div>
 
-      <!-- Hero Section -->
-      <section id="hero" class="hero-section">
-        <div class="bg-gradient"></div>
+      <div class="about-story">
+        <div class="about-images">
+          <div class="image-1"></div>
+          <div class="image-2"></div>
+        </div>
         
-        <!-- Decorative elements -->
-        <div class="decorative-element top-left"></div>
-        <div class="decorative-element bottom-right"></div>
-        
-        <div class="container-custom hero-content">
-          <span class="badge reveal">
-            Prutha Engineering Company
-          </span>
-          
-          <h1 class="heading-xl reveal">
-            Crafting the future with <br class="hidden-mobile">
-            <span class="text-accent">precision</span> and <span class="text-accent-secondary">innovation</span>
-          </h1>
-          
-          <p class="hero-description reveal">
-            Transforming raw materials into sophisticated solutions through state-of-the-art 
-            vertical machining centers and expert fabrication techniques.
+        <div class="about-content">
+          <span class="badge">Our Story</span>
+          <h3>Crafting precision since 2003</h3>
+          <p>
+            Founded with a vision to revolutionize metal fabrication, our company has evolved into 
+            a trusted partner for industries requiring precision-engineered components. Our journey 
+            has been marked by continuous innovation and an unwavering commitment to quality.
           </p>
-          
-          <div class="button-group reveal">
-            <a href="#contact" class="btn-primary">
-              Get in Touch
-            </a>
-            <a href="#services" class="btn-secondary">
-              Explore Our Services
-            </a>
-          </div>
-        </div>
-        
-        <button 
-          id="scroll-down-btn"
-          class="scroll-down-btn"
-          aria-label="Scroll down"
-        >
-          <i data-lucide="chevron-down" class="lucide-icon"></i>
-        </button>
-      </section>
-
-      <!-- About Section -->
-      <section id="about" class="section bg-white">
-        <div class="container-custom">
-          <div class="section-header text-center">
-            <span class="badge reveal">
-              About Us
-            </span>
-            <h2 class="heading-lg reveal">Precision engineered for excellence</h2>
-            <p class="section-description reveal">
-              With over two decades of experience, we specialize in high-precision fabrication and 
-              vertical machining center operations, delivering exceptional quality and innovative solutions 
-              for diverse industrial needs.
-            </p>
-          </div>
-
-          <div class="feature-grid">
-            <div class="feature-card reveal">
-              <div class="feature-icon">
-                <i data-lucide="clock" class="lucide-icon"></i>
-              </div>
-              <h3>Timely Delivery</h3>
-              <p>We understand the importance of deadlines and commit to delivering projects on schedule without compromising quality.</p>
-            </div>
-            <div class="feature-card reveal">
-              <div class="feature-icon">
-                <i data-lucide="shield" class="lucide-icon"></i>
-              </div>
-              <h3>Quality Assurance</h3>
-              <p>Every project undergoes rigorous quality checks to ensure precision, durability, and compliance with industry standards.</p>
-            </div>
-            <div class="feature-card reveal">
-              <div class="feature-icon">
-                <i data-lucide="users" class="lucide-icon"></i>
-              </div>
-              <h3>Expert Team</h3>
-              <p>Our workforce comprises skilled engineers and technicians with extensive experience in fabrication and machining.</p>
-            </div>
-            <div class="feature-card reveal">
-              <div class="feature-icon">
-                <i data-lucide="badge-check" class="lucide-icon"></i>
-              </div>
-              <h3>Certified Processes</h3>
-              <p>We adhere to industry-certified processes and maintain stringent quality control measures throughout production.</p>
-            </div>
-          </div>
-
-          <div class="about-story">
-            <div class="about-images reveal">
-              <div class="image-main bg-grain">
-                <div class="image-placeholder"></div>
-              </div>
-              <div class="image-secondary bg-grain">
-                <div class="image-placeholder"></div>
-              </div>
-            </div>
-            
-            <div class="about-content reveal">
-              <span class="badge">
-                Our Story
-              </span>
-              <h3 class="heading-md">Crafting precision since 2003</h3>
-              <p>
-                Founded with a vision to revolutionize metal fabrication, our company has evolved into 
-                a trusted partner for industries requiring precision-engineered components. Our journey 
-                has been marked by continuous innovation and an unwavering commitment to quality.
-              </p>
-              <p>
-                We've invested in cutting-edge vertical machining centers and developed proprietary 
-                techniques that enable us to tackle complex projects with exceptional accuracy and efficiency.
-              </p>
-              <a href="#services" class="link-arrow">
-                Discover our capabilities
-                <svg class="arrow-icon" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                </svg>
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Services Section -->
-      <section id="services" class="section bg-light">
-        <div class="container-custom">
-          <div class="section-header text-center">
-            <span class="badge reveal">
-              Our Services
-            </span>
-            <h2 class="heading-lg reveal">Comprehensive fabrication and machining solutions</h2>
-            <p class="section-description reveal">
-              We offer a wide range of precision manufacturing services utilizing state-of-the-art 
-              vertical machining centers and advanced fabrication technologies.
-            </p>
-          </div>
-
-          <div class="services-grid">
-            <div class="service-card reveal">
-              <div class="service-header blue">
-                <div class="service-icon">
-                  <i data-lucide="settings" class="lucide-icon"></i>
-                </div>
-              </div>
-              <div class="service-content">
-                <h3>VMC Machining</h3>
-                <p>High-precision vertical machining center operations for complex components.</p>
-                <ul class="service-list">
-                  <li>CNC Milling and Turning</li>
-                  <li>Multi-axis Machining</li>
-                  <li>Precision Parts Manufacturing</li>
-                  <li>Prototype Development</li>
-                </ul>
-              </div>
-            </div>
-            <div class="service-card reveal">
-              <div class="service-header steel">
-                <div class="service-icon">
-                  <i data-lucide="wrench" class="lucide-icon"></i>
-                </div>
-              </div>
-              <div class="service-content">
-                <h3>Metal Fabrication</h3>
-                <p>Comprehensive metal fabrication services from raw materials to finished products.</p>
-                <ul class="service-list">
-                  <li>Custom Sheet Metal Fabrication</li>
-                  <li>Welding and Assembly</li>
-                  <li>Laser and Plasma Cutting</li>
-                  <li>Metal Forming and Bending</li>
-                </ul>
-              </div>
-            </div>
-            <div class="service-card reveal">
-              <div class="service-header blue">
-                <div class="service-icon">
-                  <i data-lucide="layers" class="lucide-icon"></i>
-                </div>
-              </div>
-              <div class="service-content">
-                <h3>Industrial Solutions</h3>
-                <p>End-to-end industrial solutions tailored to specific industry requirements.</p>
-                <ul class="service-list">
-                  <li>Production Line Components</li>
-                  <li>Industrial Automation Parts</li>
-                  <li>Custom Machinery Components</li>
-                  <li>Specialized Industrial Fixtures</li>
-                </ul>
-              </div>
-            </div>
-            <div class="service-card reveal">
-              <div class="service-header steel">
-                <div class="service-icon">
-                  <i data-lucide="gauge" class="lucide-icon"></i>
-                </div>
-              </div>
-              <div class="service-content">
-                <h3>Engineering Services</h3>
-                <p>Advanced engineering services to optimize designs for manufacturability.</p>
-                <ul class="service-list">
-                  <li>Design for Manufacturing (DFM)</li>
-                  <li>Reverse Engineering</li>
-                  <li>Technical Consulting</li>
-                  <li>3D Modeling and CAD Services</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="custom-solutions reveal">
-            <div class="solutions-content">
-              <h3 class="heading-md">Custom solutions for your specific needs</h3>
-              <p>
-                Can't find exactly what you're looking for? Our team specializes in 
-                developing custom solutions tailored to your unique requirements.
-              </p>
-              <a href="#contact" class="btn-primary">
-                Request Custom Service
-              </a>
-            </div>
-            <div class="solutions-grid">
-              <div class="solution-item blue">
-                <div class="solution-marker"></div>
-                <h4>Industry-Specific Solutions</h4>
-                <p>
-                  Specialized manufacturing solutions for aerospace, automotive, medical, and industrial sectors.
-                </p>
-              </div>
-              <div class="solution-item steel">
-                <div class="solution-marker"></div>
-                <h4>Material Expertise</h4>
-                <p>
-                  Extensive experience working with steel, aluminum, titanium, stainless steel, and specialty alloys.
-                </p>
-              </div>
-              <div class="solution-item steel">
-                <div class="solution-marker"></div>
-                <h4>Tolerance Capabilities</h4>
-                <p>
-                  Precision machining with tolerances as tight as ±0.0005" for critical applications.
-                </p>
-              </div>
-              <div class="solution-item blue">
-                <div class="solution-marker"></div>
-                <h4>Volume Flexibility</h4>
-                <p>
-                  Scalable manufacturing capabilities for both small prototype runs and high-volume production.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Projects Section -->
-      <section id="projects" class="section bg-white">
-        <div class="container-custom">
-          <div class="section-header text-center">
-            <span class="badge reveal">
-              Our Projects
-            </span>
-            <h2 class="heading-lg reveal">Featured work showcasing our capabilities</h2>
-            <p class="section-description reveal">
-              Explore our portfolio of precision fabrication and machining projects across various industries.
-            </p>
-            
-            <div class="project-filters reveal">
-              <button class="filter-btn active" data-filter="all">All Projects</button>
-              <button class="filter-btn" data-filter="vmc">VMC Machining</button>
-              <button class="filter-btn" data-filter="fabrication">Fabrication</button>
-            </div>
-          </div>
-
-          <div class="projects-grid" id="projects-grid">
-            <!-- Projects will be dynamically inserted here by JavaScript -->
-          </div>
-        </div>
-      </section>
-
-      <!-- Contact Section -->
-      <section id="contact" class="section bg-light">
-        <div class="container-custom">
-          <div class="section-header text-center">
-            <span class="badge reveal">
-              Contact Us
-            </span>
-            <h2 class="heading-lg reveal">Get in touch with our team</h2>
-            <p class="section-description reveal">
-              Have a project in mind or need a quote? Reach out to us and one of our experts will get back to you.
-            </p>
-          </div>
-
-          <div class="contact-grid">
-            <div class="info-card reveal">
-              <h3 class="heading-sm">Contact Information</h3>
-              
-              <div class="info-items">
-                <div class="info-item">
-                  <div class="info-icon blue">
-                    <i data-lucide="phone" class="lucide-icon"></i>
-                  </div>
-                  <div>
-                    <h4>Phone</h4>
-                    <p>+1 (555) 123-4567</p>
-                  </div>
-                </div>
-                
-                <div class="info-item">
-                  <div class="info-icon blue">
-                    <i data-lucide="mail" class="lucide-icon"></i>
-                  </div>
-                  <div>
-                    <h4>Email</h4>
-                    <p>info@precisionfab.com</p>
-                  </div>
-                </div>
-                
-                <div class="info-item">
-                  <div class="info-icon blue">
-                    <i data-lucide="map-pin" class="lucide-icon"></i>
-                  </div>
-                  <div>
-                    <h4>Location</h4>
-                    <p>
-                      1234 Industrial Parkway<br>
-                      Manufacturing District<br>
-                      City, State 12345
-                    </p>
-                  </div>
-                </div>
-              </div>
-              
-              <div class="business-hours">
-                <h4>Business Hours</h4>
-                <div class="hours-item">
-                  <span>Monday - Friday</span>
-                  <span>8:00 AM - 5:00 PM</span>
-                </div>
-                <div class="hours-item">
-                  <span>Saturday</span>
-                  <span>9:00 AM - 1:00 PM</span>
-                </div>
-                <div class="hours-item">
-                  <span>Sunday</span>
-                  <span>Closed</span>
-                </div>
-              </div>
-            </div>
-            
-            <div class="form-card reveal">
-              <h3 class="heading-sm">Send us a message</h3>
-              
-              <form id="contact-form" class="contact-form">
-                <div class="form-row">
-                  <div class="form-group">
-                    <label for="name">
-                      Full Name <span class="required">*</span>
-                    </label>
-                    <input
-                      id="name"
-                      name="name"
-                      type="text"
-                      required
-                      placeholder="John Doe"
-                    />
-                  </div>
-                  
-                  <div class="form-group">
-                    <label for="email">
-                      Email Address <span class="required">*</span>
-                    </label>
-                    <input
-                      id="email"
-                      name="email"
-                      type="email"
-                      required
-                      placeholder="john@example.com"
-                    />
-                  </div>
-                </div>
-                
-                <div class="form-row">
-                  <div class="form-group">
-                    <label for="phone">
-                      Phone Number
-                    </label>
-                    <input
-                      id="phone"
-                      name="phone"
-                      type="tel"
-                      placeholder="+1 (555) 123-4567"
-                    />
-                  </div>
-                  
-                  <div class="form-group">
-                    <label for="subject">
-                      Subject <span class="required">*</span>
-                    </label>
-                    <select
-                      id="subject"
-                      name="subject"
-                      required
-                    >
-                      <option value="">Select a subject</option>
-                      <option value="quote">Request a Quote</option>
-                      <option value="info">General Information</option>
-                      <option value="support">Technical Support</option>
-                      <option value="other">Other</option>
-                    </select>
-                  </div>
-                </div>
-                
-                <div class="form-group">
-                  <label for="message">
-                    Message <span class="required">*</span>
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    required
-                    rows="5"
-                    placeholder="Tell us about your project or inquiry..."
-                  ></textarea>
-                </div>
-                
-                <button
-                  type="submit"
-                  id="submit-btn"
-                  class="btn-primary"
-                >
-                  Send Message
-                  <i data-lucide="send" class="lucide-icon"></i>
-                </button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Footer -->
-      <footer class="footer">
-        <div class="container-custom">
-          <div class="footer-grid">
-            <div class="footer-brand">
-              <a href="#" class="footer-logo">
-                Prutha<span>Engineering</span>
-              </a>
-              <p>
-                Prutha Engineering Company provides solutions for industries that demand excellence.
-              </p>
-              <div class="social-links">
-                <a href="#" aria-label="Facebook">
-                  <i data-lucide="facebook" class="lucide-icon"></i>
-                </a>
-                <a href="#" aria-label="Twitter">
-                  <i data-lucide="twitter" class="lucide-icon"></i>
-                </a>
-                <a href="#" aria-label="LinkedIn">
-                  <i data-lucide="linkedin" class="lucide-icon"></i>
-                </a>
-                <a href="#" aria-label="Instagram">
-                  <i data-lucide="instagram" class="lucide-icon"></i>
-                </a>
-              </div>
-            </div>
-            
-            <div class="footer-links">
-              <h3>Quick Links</h3>
-              <ul>
-                <li><a href="#hero">Home</a></li>
-                <li><a href="#about">About Us</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-              </ul>
-            </div>
-            
-            <div class="footer-links">
-              <h3>Services</h3>
-              <ul>
-                <li><a href="#services">VMC Machining</a></li>
-                <li><a href="#services">Metal Fabrication</a></li>
-                <li><a href="#services">Industrial Solutions</a></li>
-                <li><a href="#services">Engineering Services</a></li>
-                <li><a href="#services">Custom Projects</a></li>
-              </ul>
-            </div>
-            
-            <div class="footer-contact">
-              <h3>Contact Info</h3>
-              <ul>
-                <li>
-                  <span>Location:</span>
-                  <span>1234 Industrial Parkway, City, State 12345</span>
-                </li>
-                <li>
-                  <span>Phone:</span>
-                  <a href="tel:+15551234567">+1 (555) 123-4567</a>
-                </li>
-                <li>
-                  <span>Email:</span>
-                  <a href="mailto:info@pruthaengineering.com">info@pruthaengineering.com</a>
-                </li>
-                <li>
-                  <span>Hours:</span>
-                  <span>Mon-Fri: 8am - 5pm</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-          
-          <div class="footer-bottom">
-            <p>&copy; <span id="current-year"></span> Prutha Engineering. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
-
-      <!-- Toast notification -->
-      <div id="toast" class="toast">
-        <div class="toast-content">
-          <div class="toast-title">Message Sent!</div>
-          <div class="toast-message">We'll get back to you as soon as possible.</div>
+          <p>
+            We've invested in cutting-edge vertical machining centers and developed proprietary 
+            techniques that enable us to tackle complex projects with exceptional accuracy and efficiency.
+          </p>
+          <a href="#services" class="link-with-arrow">
+            Discover our capabilities
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
         </div>
       </div>
     </div>
+  </section>
 
-    <script src="script.js"></script>
-  </body>
+  <!-- Services Section -->
+  <section id="services" class="services">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge">Our Services</span>
+        <h2>Comprehensive engineering solutions</h2>
+        <p>
+          From concept to completion, we offer a range of precision engineering services tailored to meet your specific requirements.
+        </p>
+      </div>
+
+      <div class="services-grid">
+        <!-- Services cards will go here -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="projects">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge">Our Projects</span>
+        <h2>Featured work showcasing our capabilities</h2>
+        <p>
+          Explore our portfolio of precision fabrication and machining projects across various industries.
+        </p>
+      </div>
+
+      <div class="project-filters">
+        <button class="filter-btn active" data-filter="all">All Projects</button>
+        <button class="filter-btn" data-filter="vmc">VMC Machining</button>
+        <button class="filter-btn" data-filter="fabrication">Fabrication</button>
+      </div>
+
+      <div class="projects-grid">
+        <!-- Project cards will be populated via JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge">Get In Touch</span>
+        <h2>Ready to start your project?</h2>
+        <p>
+          Contact us today to discuss your engineering needs and discover how we can help bring your vision to life.
+        </p>
+      </div>
+
+      <div class="contact-wrapper">
+        <div class="contact-info">
+          <!-- Contact info here -->
+        </div>
+        <form class="contact-form">
+          <!-- Form elements here -->
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <a href="#" class="logo">
+            Prutha<span>Engineering</span>
+          </a>
+          <p>
+            Prutha Engineering Company provides solutions for industries that demand excellence.
+          </p>
+          <div class="social-links">
+            <a href="#" aria-label="Facebook">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+              </svg>
+            </a>
+            <a href="#" aria-label="Twitter">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+              </svg>
+            </a>
+            <a href="#" aria-label="LinkedIn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                <rect x="2" y="9" width="4" height="12"></rect>
+                <circle cx="4" cy="4" r="2"></circle>
+              </svg>
+            </a>
+            <a href="#" aria-label="Instagram">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+            </a>
+          </div>
+        </div>
+        
+        <div class="footer-links">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-contact">
+          <!-- Footer contact info here -->
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>© <span id="current-year"></span> Prutha Engineering. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
 </html>
