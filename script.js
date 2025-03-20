@@ -111,6 +111,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Generate project cards
   function renderProjects(projectsToRender) {
+    if (!projectsGrid) return; // Check if the projects grid exists
+    
     projectsGrid.innerHTML = '';
     
     projectsToRender.forEach((project, index) => {
@@ -153,24 +155,26 @@ document.addEventListener('DOMContentLoaded', function() {
   renderProjects(projects);
 
   // Filter projects
-  filterButtons.forEach(button => {
-    button.addEventListener('click', function() {
-      // Update active filter button
-      filterButtons.forEach(btn => btn.classList.remove('active'));
-      this.classList.add('active');
-      
-      const filterValue = this.getAttribute('data-filter');
-      
-      // Filter projects
-      let filteredProjects = projects;
-      if (filterValue !== 'all') {
-        filteredProjects = projects.filter(project => project.category === filterValue);
-      }
-      
-      // Render filtered projects
-      renderProjects(filteredProjects);
+  if (filterButtons) {
+    filterButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        // Update active filter button
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        this.classList.add('active');
+        
+        const filterValue = this.getAttribute('data-filter');
+        
+        // Filter projects
+        let filteredProjects = projects;
+        if (filterValue !== 'all') {
+          filteredProjects = projects.filter(project => project.category === filterValue);
+        }
+        
+        // Render filtered projects
+        renderProjects(filteredProjects);
+      });
     });
-  });
+  }
 
   // Add services data
   const servicesGrid = document.querySelector('.services-grid');
@@ -209,6 +213,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Render services
   if (servicesGrid) {
+    servicesGrid.innerHTML = '';
     services.forEach((service, index) => {
       const serviceCard = document.createElement('div');
       serviceCard.className = 'service-card reveal';
