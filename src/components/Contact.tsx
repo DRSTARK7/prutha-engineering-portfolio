@@ -1,213 +1,253 @@
 
-import React, { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { Phone, Mail, MapPin, Send } from 'lucide-react';
+import { useToast } from "@/hooks/use-toast";
 
 const Contact = () => {
+  const { toast } = useToast();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
-    company: '',
-    service: '',
+    subject: '',
     message: ''
   });
-  
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [showToast, setShowToast] = useState(false);
-  
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
   };
-  
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     
     // Simulate form submission
     setTimeout(() => {
-      setIsSubmitting(false);
-      setShowToast(true);
+      toast({
+        title: "Message Sent!",
+        description: "We'll get back to you as soon as possible.",
+        duration: 5000,
+      });
+      
       setFormData({
         name: '',
         email: '',
         phone: '',
-        company: '',
-        service: '',
+        subject: '',
         message: ''
       });
       
-      // Hide toast after 5 seconds
-      setTimeout(() => {
-        setShowToast(false);
-      }, 5000);
+      setIsSubmitting(false);
     }, 1500);
   };
-  
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    const elements = document.querySelectorAll('.reveal');
+    elements.forEach((el) => observer.observe(el));
+
+    return () => {
+      elements.forEach((el) => observer.unobserve(el));
+    };
+  }, []);
+
   return (
-    <section className="section" id="contact">
+    <section id="contact" className="section bg-steel-50/50">
       <div className="container-custom">
-        <div className="section-header text-center">
-          <span className="badge">Contact Us</span>
-          <h2 className="heading-lg">Get in Touch with Our Team</h2>
-          <p className="section-description">Reach out to discuss your project requirements or request a quote for our precision engineering services.</p>
+        <div className="max-w-3xl mx-auto text-center mb-16">
+          <span className="inline-block py-1 px-3 mb-4 text-xs font-semibold text-blue-700 bg-blue-50 rounded-full reveal">
+            Contact Us
+          </span>
+          <h2 className="heading-lg mb-6 reveal">Get in touch with our team</h2>
+          <p className="text-lg text-muted-foreground reveal">
+            Have a project in mind or need a quote? Reach out to us and one of our experts will get back to you.
+          </p>
         </div>
-        
-        <div className="contact-grid">
-          <div className="info-card">
-            <h3 className="heading-sm">Contact Information</h3>
-            <p>We're here to assist you with any questions about our services or to discuss your project requirements.</p>
-            
-            <div className="info-items">
-              <div className="info-item">
-                <div className="info-icon blue">
-                  <i data-lucide="map-pin" className="lucide-icon"></i>
+
+        <div className="grid md:grid-cols-5 gap-8">
+          <div className="md:col-span-2 reveal">
+            <div className="bg-white p-6 rounded-lg shadow-sm border border-border h-full">
+              <h3 className="heading-sm mb-6">Contact Information</h3>
+              
+              <div className="space-y-6">
+                <div className="flex items-start">
+                  <div className="mr-4 p-2 bg-blue-50 rounded-md">
+                    <Phone className="h-5 w-5 text-blue-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-medium mb-1">Phone</h4>
+                    <p className="text-muted-foreground">+1 (555) 123-4567</p>
+                  </div>
                 </div>
-                <div>
-                  <h4>Our Location</h4>
-                  <p>1234 Industrial Parkway<br />Metropolis, CA 90001</p>
+                
+                <div className="flex items-start">
+                  <div className="mr-4 p-2 bg-blue-50 rounded-md">
+                    <Mail className="h-5 w-5 text-blue-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-medium mb-1">Email</h4>
+                    <p className="text-muted-foreground">info@precisionfab.com</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start">
+                  <div className="mr-4 p-2 bg-blue-50 rounded-md">
+                    <MapPin className="h-5 w-5 text-blue-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-medium mb-1">Location</h4>
+                    <p className="text-muted-foreground">
+                      1234 Industrial Parkway<br />
+                      Manufacturing District<br />
+                      City, State 12345
+                    </p>
+                  </div>
                 </div>
               </div>
               
-              <div className="info-item">
-                <div className="info-icon blue">
-                  <i data-lucide="phone" className="lucide-icon"></i>
+              <div className="mt-8 pt-6 border-t border-border">
+                <h4 className="font-medium mb-4">Business Hours</h4>
+                <div className="space-y-2">
+                  <div className="flex justify-between">
+                    <span className="text-muted-foreground">Monday - Friday</span>
+                    <span>8:00 AM - 5:00 PM</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-muted-foreground">Saturday</span>
+                    <span>9:00 AM - 1:00 PM</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-muted-foreground">Sunday</span>
+                    <span>Closed</span>
+                  </div>
                 </div>
-                <div>
-                  <h4>Phone Number</h4>
-                  <p>(555) 123-4567</p>
-                </div>
-              </div>
-              
-              <div className="info-item">
-                <div className="info-icon blue">
-                  <i data-lucide="mail" className="lucide-icon"></i>
-                </div>
-                <div>
-                  <h4>Email Address</h4>
-                  <p>info@pruthaengineering.com</p>
-                </div>
-              </div>
-            </div>
-            
-            <div className="business-hours">
-              <h4>Business Hours</h4>
-              <div className="hours-item">
-                <span>Monday - Friday:</span>
-                <span>8:00 AM - 5:00 PM</span>
-              </div>
-              <div className="hours-item">
-                <span>Saturday:</span>
-                <span>9:00 AM - 1:00 PM</span>
-              </div>
-              <div className="hours-item">
-                <span>Sunday:</span>
-                <span>Closed</span>
               </div>
             </div>
           </div>
           
-          <div className="form-card">
-            <h3 className="heading-sm">Send Us a Message</h3>
-            <p>Complete the form below and we'll get back to you as soon as possible.</p>
-            
-            <form className="contact-form" id="contact-form" onSubmit={handleSubmit}>
-              <div className="form-row">
-                <div className="form-group">
-                  <label htmlFor="name">Your Name <span className="required">*</span></label>
-                  <input 
-                    type="text" 
-                    id="name" 
-                    name="name" 
-                    required 
-                    value={formData.name}
-                    onChange={handleChange}
-                  />
+          <div className="md:col-span-3 reveal">
+            <div className="bg-white p-6 rounded-lg shadow-sm border border-border">
+              <h3 className="heading-sm mb-6">Send us a message</h3>
+              
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <label htmlFor="name" className="text-sm font-medium">
+                      Full Name <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      id="name"
+                      name="name"
+                      type="text"
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-4 py-2 border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-primary/30"
+                      placeholder="John Doe"
+                    />
+                  </div>
+                  
+                  <div className="space-y-2">
+                    <label htmlFor="email" className="text-sm font-medium">
+                      Email Address <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      id="email"
+                      name="email"
+                      type="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-4 py-2 border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-primary/30"
+                      placeholder="john@example.com"
+                    />
+                  </div>
                 </div>
                 
-                <div className="form-group">
-                  <label htmlFor="email">Email Address <span className="required">*</span></label>
-                  <input 
-                    type="email" 
-                    id="email" 
-                    name="email" 
-                    required 
-                    value={formData.email}
-                    onChange={handleChange}
-                  />
-                </div>
-              </div>
-              
-              <div className="form-row">
-                <div className="form-group">
-                  <label htmlFor="phone">Phone Number</label>
-                  <input 
-                    type="tel" 
-                    id="phone" 
-                    name="phone" 
-                    value={formData.phone}
-                    onChange={handleChange}
-                  />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <label htmlFor="phone" className="text-sm font-medium">
+                      Phone Number
+                    </label>
+                    <input
+                      id="phone"
+                      name="phone"
+                      type="tel"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      className="w-full px-4 py-2 border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-primary/30"
+                      placeholder="+1 (555) 123-4567"
+                    />
+                  </div>
+                  
+                  <div className="space-y-2">
+                    <label htmlFor="subject" className="text-sm font-medium">
+                      Subject <span className="text-red-500">*</span>
+                    </label>
+                    <select
+                      id="subject"
+                      name="subject"
+                      value={formData.subject}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-4 py-2 border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-primary/30"
+                    >
+                      <option value="">Select a subject</option>
+                      <option value="quote">Request a Quote</option>
+                      <option value="info">General Information</option>
+                      <option value="support">Technical Support</option>
+                      <option value="other">Other</option>
+                    </select>
+                  </div>
                 </div>
                 
-                <div className="form-group">
-                  <label htmlFor="company">Company Name</label>
-                  <input 
-                    type="text" 
-                    id="company" 
-                    name="company" 
-                    value={formData.company}
+                <div className="space-y-2">
+                  <label htmlFor="message" className="text-sm font-medium">
+                    Message <span className="text-red-500">*</span>
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    value={formData.message}
                     onChange={handleChange}
-                  />
+                    required
+                    rows={5}
+                    className="w-full px-4 py-2 border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-primary/30"
+                    placeholder="Tell us about your project or inquiry..."
+                  ></textarea>
                 </div>
-              </div>
-              
-              <div className="form-group">
-                <label htmlFor="service">Service Interest</label>
-                <select 
-                  id="service" 
-                  name="service" 
-                  value={formData.service}
-                  onChange={handleChange}
+                
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="flex items-center justify-center w-full md:w-auto px-6 py-3 bg-primary text-primary-foreground rounded-md shadow-sm hover:shadow transition-all focus-ring disabled:opacity-70"
                 >
-                  <option value="">Select a Service</option>
-                  <option value="CNC Machining">CNC Machining</option>
-                  <option value="Metal Fabrication">Metal Fabrication</option>
-                  <option value="Welding & Assembly">Welding & Assembly</option>
-                  <option value="Engineering Support">Engineering Support</option>
-                  <option value="Other">Other Services</option>
-                </select>
-              </div>
-              
-              <div className="form-group">
-                <label htmlFor="message">Your Message <span className="required">*</span></label>
-                <textarea 
-                  id="message" 
-                  name="message" 
-                  rows={4} 
-                  required
-                  value={formData.message}
-                  onChange={handleChange}
-                ></textarea>
-              </div>
-              
-              <button 
-                type="submit" 
-                className="btn-primary" 
-                id="submit-btn"
-                disabled={isSubmitting}
-              >
-                {isSubmitting ? 'Processing...' : 'Send Message'}
-                {!isSubmitting && <i data-lucide="send" className="lucide-icon ml-2"></i>}
-              </button>
-            </form>
+                  {isSubmitting ? (
+                    <>Processing...</>
+                  ) : (
+                    <>
+                      Send Message
+                      <Send className="ml-2 h-4 w-4" />
+                    </>
+                  )}
+                </button>
+              </form>
+            </div>
           </div>
-        </div>
-      </div>
-      
-      <div className={`toast ${showToast ? 'show' : ''}`} id="toast">
-        <div className="toast-content">
-          <h4 className="toast-title">Message Sent!</h4>
-          <p className="toast-message">Thank you for contacting us. We'll get back to you soon.</p>
         </div>
       </div>
     </section>

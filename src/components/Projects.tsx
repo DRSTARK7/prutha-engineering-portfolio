@@ -1,67 +1,79 @@
 
-import React, { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
+
+interface Project {
+  id: number;
+  title: string;
+  category: string;
+  description: string;
+  image: string;
+}
 
 const Projects = () => {
-  // Project data
-  const projectsData = [
-    {
-      id: 1,
-      title: 'Precision Milled Components',
-      category: 'vmc',
-      description: 'High-precision aluminum components for aerospace applications with tight tolerances.',
-      image: 'bg-steel-200'
-    },
-    {
-      id: 2,
-      title: 'Custom Steel Fabrication',
-      category: 'fabrication',
-      description: 'Custom steel structures designed and fabricated for industrial equipment.',
-      image: 'bg-steel-300'
-    },
-    {
-      id: 3,
-      title: 'CNC Machined Parts',
-      category: 'vmc',
-      description: 'Complex geometries machined from solid blocks for the automotive industry.',
-      image: 'bg-blue-200'
-    },
-    {
-      id: 4,
-      title: 'Sheet Metal Assembly',
-      category: 'fabrication',
-      description: 'Precision sheet metal components with complex bends and welded assemblies.',
-      image: 'bg-blue-300'
-    },
-    {
-      id: 5,
-      title: 'Multi-axis Machining',
-      category: 'vmc',
-      description: 'Multi-axis machined components with intricate features and surface finishes.',
-      image: 'bg-steel-200'
-    },
-    {
-      id: 6,
-      title: 'Metal Framework',
-      category: 'fabrication',
-      description: 'Structural steel framework with precision welding and surface treatments.',
-      image: 'bg-blue-200'
-    }
-  ];
+  const [activeFilter, setActiveFilter] = useState<string>('all');
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [filteredProjects, setFilteredProjects] = useState<Project[]>([]);
 
-  const [filter, setFilter] = useState('all');
-  const [filteredProjects, setFilteredProjects] = useState(projectsData);
-
-  // Apply filter when it changes
   useEffect(() => {
-    if (filter === 'all') {
-      setFilteredProjects(projectsData);
-    } else {
-      const filtered = projectsData.filter(project => project.category === filter);
-      setFilteredProjects(filtered);
-    }
-  }, [filter]);
+    // Sample project data
+    const sampleProjects: Project[] = [
+      {
+        id: 1,
+        title: 'Precision Milled Components',
+        category: 'vmc',
+        description: 'High-precision aluminum components for aerospace applications with tight tolerances.',
+        image: 'bg-steel-200'
+      },
+      {
+        id: 2,
+        title: 'Custom Steel Fabrication',
+        category: 'fabrication',
+        description: 'Custom steel structures designed and fabricated for industrial equipment.',
+        image: 'bg-steel-300'
+      },
+      {
+        id: 3,
+        title: 'CNC Machined Parts',
+        category: 'vmc',
+        description: 'Complex geometries machined from solid blocks for the automotive industry.',
+        image: 'bg-blue-200'
+      },
+      {
+        id: 4,
+        title: 'Sheet Metal Assembly',
+        category: 'fabrication',
+        description: 'Precision sheet metal components with complex bends and welded assemblies.',
+        image: 'bg-blue-300'
+      },
+      {
+        id: 5,
+        title: 'Multi-axis Machining',
+        category: 'vmc',
+        description: 'Multi-axis machined components with intricate features and surface finishes.',
+        image: 'bg-steel-200'
+      },
+      {
+        id: 6,
+        title: 'Metal Framework',
+        category: 'fabrication',
+        description: 'Structural steel framework with precision welding and surface treatments.',
+        image: 'bg-blue-200'
+      }
+    ];
 
-  // Initialize intersection observer for animations
+    setProjects(sampleProjects);
+    setFilteredProjects(sampleProjects);
+  }, []);
+
+  const filterProjects = (category: string) => {
+    setActiveFilter(category);
+    if (category === 'all') {
+      setFilteredProjects(projects);
+    } else {
+      setFilteredProjects(projects.filter(project => project.category === category));
+    }
+  };
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -73,8 +85,7 @@ const Projects = () => {
       },
       { threshold: 0.1 }
     );
-    
-    // Observe all elements with the 'reveal' class
+
     const elements = document.querySelectorAll('.reveal');
     elements.forEach((el) => observer.observe(el));
 
@@ -84,59 +95,79 @@ const Projects = () => {
   }, [filteredProjects]);
 
   return (
-    <section className="section bg-light" id="projects">
+    <section id="projects" className="section bg-white">
       <div className="container-custom">
-        <div className="section-header text-center">
-          <span className="badge">Our Projects</span>
-          <h2 className="heading-lg">Featured Engineering Projects</h2>
-          <p className="section-description">Explore our portfolio of precision machining and fabrication projects delivered to clients across various industries.</p>
+        <div className="max-w-3xl mx-auto text-center mb-16">
+          <span className="inline-block py-1 px-3 mb-4 text-xs font-semibold text-blue-700 bg-blue-50 rounded-full reveal">
+            Our Projects
+          </span>
+          <h2 className="heading-lg mb-6 reveal">Featured work showcasing our capabilities</h2>
+          <p className="text-lg text-muted-foreground mb-8 reveal">
+            Explore our portfolio of precision fabrication and machining projects across various industries.
+          </p>
+          
+          <div className="flex flex-wrap justify-center gap-2 mb-12 reveal">
+            <button
+              onClick={() => filterProjects('all')}
+              className={`px-4 py-2 rounded-md transition-all ${
+                activeFilter === 'all'
+                  ? 'bg-primary text-primary-foreground shadow-sm'
+                  : 'bg-secondary hover:bg-secondary/80'
+              }`}
+            >
+              All Projects
+            </button>
+            <button
+              onClick={() => filterProjects('vmc')}
+              className={`px-4 py-2 rounded-md transition-all ${
+                activeFilter === 'vmc'
+                  ? 'bg-primary text-primary-foreground shadow-sm'
+                  : 'bg-secondary hover:bg-secondary/80'
+              }`}
+            >
+              VMC Machining
+            </button>
+            <button
+              onClick={() => filterProjects('fabrication')}
+              className={`px-4 py-2 rounded-md transition-all ${
+                activeFilter === 'fabrication'
+                  ? 'bg-primary text-primary-foreground shadow-sm'
+                  : 'bg-secondary hover:bg-secondary/80'
+              }`}
+            >
+              Fabrication
+            </button>
+          </div>
         </div>
-        
-        <div className="project-filters">
-          <button 
-            className={`filter-btn ${filter === 'all' ? 'active' : ''}`} 
-            onClick={() => setFilter('all')}
-          >
-            All Projects
-          </button>
-          <button 
-            className={`filter-btn ${filter === 'vmc' ? 'active' : ''}`} 
-            onClick={() => setFilter('vmc')}
-          >
-            VMC Projects
-          </button>
-          <button 
-            className={`filter-btn ${filter === 'fabrication' ? 'active' : ''}`} 
-            onClick={() => setFilter('fabrication')}
-          >
-            Fabrication Projects
-          </button>
-        </div>
-        
-        <div className="projects-grid" id="projects-grid">
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredProjects.map((project, index) => (
-            <div 
-              key={project.id} 
-              className={`project-card reveal`} 
-              data-category={project.category}
+            <div
+              key={project.id}
+              className="group overflow-hidden rounded-lg shadow-sm border border-border hover:shadow-md transition-all reveal"
               style={{ animationDelay: `${index * 100}ms` }}
             >
-              <div className={`project-image ${project.image} bg-grain`}>
-                <div className="image-placeholder"></div>
+              <div className={`aspect-video ${project.image} bg-grain relative overflow-hidden`}>
+                <div className="absolute inset-0 bg-blue-900/10"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
-              <div className="project-content">
-                <div className="project-header">
-                  <h3>{project.title}</h3>
-                  <span className={`project-category ${project.category === 'vmc' ? 'blue' : 'steel'}`}>
+              <div className="p-6">
+                <div className="flex justify-between items-start mb-2">
+                  <h3 className="font-semibold text-lg">{project.title}</h3>
+                  <span className={`text-xs font-semibold py-1 px-2 rounded-full ${
+                    project.category === 'vmc' 
+                      ? 'bg-blue-50 text-blue-700' 
+                      : 'bg-steel-50 text-steel-700'
+                  }`}>
                     {project.category === 'vmc' ? 'VMC' : 'Fabrication'}
                   </span>
                 </div>
-                <p>{project.description}</p>
-                <div className="project-footer">
-                  <button className="link-arrow">
+                <p className="text-muted-foreground">{project.description}</p>
+                <div className="mt-4 pt-4 border-t border-border">
+                  <button className="text-blue-700 hover:text-blue-800 font-medium text-sm flex items-center">
                     View Project Details
-                    <svg className="arrow-icon" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    <svg className="ml-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                     </svg>
                   </button>
                 </div>
