@@ -1,7 +1,28 @@
 
+import { useEffect } from 'react';
 import { Clock, Shield, Users, BadgeCheck } from 'lucide-react';
 
 const About = () => {
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    const elements = document.querySelectorAll('.reveal');
+    elements.forEach((el) => observer.observe(el));
+
+    return () => {
+      elements.forEach((el) => observer.unobserve(el));
+    };
+  }, []);
+
   const features = [
     {
       icon: <Clock className="h-8 w-8 text-blue-600" />,
@@ -29,11 +50,11 @@ const About = () => {
     <section id="about" className="section bg-white">
       <div className="container-custom">
         <div className="max-w-3xl mx-auto text-center mb-16">
-          <span className="inline-block py-1 px-3 mb-4 text-xs font-semibold text-blue-700 bg-blue-50 rounded-full">
+          <span className="inline-block py-1 px-3 mb-4 text-xs font-semibold text-blue-700 bg-blue-50 rounded-full reveal">
             About Us
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Precision engineered for excellence</h2>
-          <p className="text-lg text-muted-foreground">
+          <h2 className="heading-lg mb-6 reveal">Precision engineered for excellence</h2>
+          <p className="text-lg text-muted-foreground reveal">
             With over two decades of experience, we specialize in high-precision fabrication and 
             vertical machining center operations, delivering exceptional quality and innovative solutions 
             for diverse industrial needs.
@@ -44,7 +65,8 @@ const About = () => {
           {features.map((feature, index) => (
             <div 
               key={index} 
-              className="bg-white p-6 rounded-lg shadow-sm border border-border hover:shadow-md transition-shadow"
+              className="bg-white p-6 rounded-lg shadow-sm border border-border hover:shadow-md transition-shadow reveal"
+              style={{ animationDelay: `${index * 100}ms` }}
             >
               <div className="mb-4 inline-flex items-center justify-center w-12 h-12 bg-blue-50 rounded-md">
                 {feature.icon}
@@ -56,20 +78,22 @@ const About = () => {
         </div>
 
         <div className="mt-24 grid md:grid-cols-2 gap-12 items-center">
-          <div className="relative">
-            <div className="aspect-[4/3] rounded-lg overflow-hidden bg-steel-200 bg-grain">
-              <div className="absolute inset-0 bg-blue-900/10"></div>
-            </div>
-            <div className="absolute -bottom-6 -right-6 w-2/3 aspect-[4/3] rounded-lg overflow-hidden bg-blue-100 bg-grain">
-              <div className="absolute inset-0 bg-blue-900/10"></div>
+          <div className="reveal">
+            <div className="relative">
+              <div className="aspect-[4/3] rounded-lg overflow-hidden bg-steel-200 bg-grain">
+                <div className="absolute inset-0 bg-blue-900/10"></div>
+              </div>
+              <div className="absolute -bottom-6 -right-6 w-2/3 aspect-[4/3] rounded-lg overflow-hidden bg-blue-100 bg-grain">
+                <div className="absolute inset-0 bg-blue-900/10"></div>
+              </div>
             </div>
           </div>
           
-          <div>
+          <div className="reveal">
             <span className="inline-block py-1 px-3 mb-4 text-xs font-semibold text-blue-700 bg-blue-50 rounded-full">
               Our Story
             </span>
-            <h3 className="text-2xl md:text-3xl font-bold mb-6">Crafting precision since 2003</h3>
+            <h3 className="heading-md mb-6">Crafting precision since 2003</h3>
             <p className="text-muted-foreground mb-6">
               Founded with a vision to revolutionize metal fabrication, our company has evolved into 
               a trusted partner for industries requiring precision-engineered components. Our journey 
